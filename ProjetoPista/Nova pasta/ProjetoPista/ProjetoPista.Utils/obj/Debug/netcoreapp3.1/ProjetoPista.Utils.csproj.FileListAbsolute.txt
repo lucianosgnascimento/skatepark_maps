@@ -1,0 +1,20 @@
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Utils\bin\Debug\netcoreapp3.1\ProjetoPista.Utils.deps.json
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Utils\bin\Debug\netcoreapp3.1\ProjetoPista.Utils.dll
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Utils\bin\Debug\netcoreapp3.1\ProjetoPista.Utils.pdb
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Utils\obj\Debug\netcoreapp3.1\ProjetoPista.Utils.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Utils\obj\Debug\netcoreapp3.1\ProjetoPista.Utils.AssemblyInfoInputs.cache
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Utils\obj\Debug\netcoreapp3.1\ProjetoPista.Utils.AssemblyInfo.cs
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Utils\obj\Debug\netcoreapp3.1\ProjetoPista.Utils.csproj.CoreCompileInputs.cache
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Utils\obj\Debug\netcoreapp3.1\ProjetoPista.Utils.dll
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Utils\obj\Debug\netcoreapp3.1\ProjetoPista.Utils.pdb
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Utils\obj\Debug\netcoreapp3.1\ProjetoPista.Utils.csproj.AssemblyReference.cache
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\Nova pasta\ProjetoPista\ProjetoPista.Utils\bin\Debug\netcoreapp3.1\ProjetoPista.Utils.deps.json
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\Nova pasta\ProjetoPista\ProjetoPista.Utils\bin\Debug\netcoreapp3.1\ProjetoPista.Utils.dll
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\Nova pasta\ProjetoPista\ProjetoPista.Utils\bin\Debug\netcoreapp3.1\ProjetoPista.Utils.pdb
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\Nova pasta\ProjetoPista\ProjetoPista.Utils\obj\Debug\netcoreapp3.1\ProjetoPista.Utils.csproj.AssemblyReference.cache
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\Nova pasta\ProjetoPista\ProjetoPista.Utils\obj\Debug\netcoreapp3.1\ProjetoPista.Utils.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\Nova pasta\ProjetoPista\ProjetoPista.Utils\obj\Debug\netcoreapp3.1\ProjetoPista.Utils.AssemblyInfoInputs.cache
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\Nova pasta\ProjetoPista\ProjetoPista.Utils\obj\Debug\netcoreapp3.1\ProjetoPista.Utils.AssemblyInfo.cs
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\Nova pasta\ProjetoPista\ProjetoPista.Utils\obj\Debug\netcoreapp3.1\ProjetoPista.Utils.csproj.CoreCompileInputs.cache
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\Nova pasta\ProjetoPista\ProjetoPista.Utils\obj\Debug\netcoreapp3.1\ProjetoPista.Utils.dll
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\Nova pasta\ProjetoPista\ProjetoPista.Utils\obj\Debug\netcoreapp3.1\ProjetoPista.Utils.pdb

@@ -1,0 +1,36 @@
+﻿@model IPagedList<ProjetoPista.Model.Dtos.ProfessorDto>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@using X.PagedList.Mvc.Common;
+
+
+<link href="~/css/PagedList.css" rel="stylesheet" type="text/css" />
+
+<div class="container-fluid">
+    <ul class="list-group list-group-horizontal align-items-stretch flex-wrap">
+        @foreach (var item in Model)
+        {
+<li class="list-group-item border-0">
+    <div class="card my-3">
+        <img src="~/imagensProf/@item.nm_profile" class="card-img-top img-responsive">
+        <div class="card-body">
+            <h4 class="card-title">@item.nm_professor.Split(" ")[0]</h4>
+            <p class="card-text">@item.nm_apelido</p>
+            <a class="btn btn-primary" type="button" asp-controller="Profile" asp-action="DashProfessor"><i class="fas fa-arrow-circle-left"></i>Mais informações</a>
+        </div>
+    </div>
+</li>
+}
+    </ul>
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Consultar",new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }),
+    new X.PagedList.Web.Common.PagedListRenderOptions
+    {
+        LiElementClasses = new string[] { "page-item" },
+        PageClasses = new string[] { "page-link" }
+    }
+        )
+
+</div>

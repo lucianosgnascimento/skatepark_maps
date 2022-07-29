@@ -1,0 +1,57 @@
+﻿@model ProjetoPista.Model.Dtos.PistaDto
+@section Scripts
+    {
+    <script src="~/js/Usuario/SalvarPista.js" asp-append-version="true"></script>
+
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h2 class="display-4">@ViewData["Title"]</h2>
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-4">
+        <div class="col">
+            <a class="btn btn-primary" asp-controller="Aprovacoes" asp-action="Consultar"><i class="fas fa-arrow-circle-left"></i> Voltar</a>
+            <a id="btn-salvar" class="btn btn-primary" asp-controller="Aprovacoes" asp-action="Salvar"><i class="fas fa-plus-circle"></i> Salvar</a>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col">
+            @*Tabela de imagens*@
+            <div class="row">
+                <div class="col">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Ações</th>
+                                <th scope="col">nome</th>
+                                <th scope="col">imagem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.nm_imagens)
+                            {
+                <tr>
+                    <th scope="row">
+                        @*<a class="btn btn-success btn-sm" asp-controller="Aprovacoes" asp-action="Visualizar" asp-route-id="@item.id_pista"><i class="fa fa-eye"></i></a>*@
+                        <a data-title="Exclusão" data-message="Deseja realmente excluir?" class="btn btn-danger btn-sm btn-delete" href="@Url.Action("DeleteImagem","Aprovacoes",new {imgdel = @item ,id = @Model.id_pista})"><i class="fas fa-trash-alt"></i></a>
+                    </th>
+                    <td>@item</td>
+                    <td><img src="~/imagensPistas/@item" height="80" width="120" /></td>
+
+                </tr>}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

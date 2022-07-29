@@ -1,0 +1,230 @@
+﻿@model ProjetoPista.Model.Dtos.PistaDto
+@section Scripts
+    {
+    <script src="~/js/Usuario/SalvarPista.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#modalidadescombo').multiselect();
+        });
+    </script>
+    }
+
+
+<div class="row">
+    <div class="col">
+        <h2 class="display-4">@ViewData["Editar aprovacoes"]</h2>
+    </div>
+</div>
+
+<div class="row mt-4 mb-4">
+    <div class="col">
+        <a class="btn btn-primary" asp-controller="Aprovacoes" asp-action="Consultar"><i class="fas fa-arrow-circle-left"></i> Voltar</a>
+        <a id="btn-salvar" class="btn btn-primary" asp-controller="Aprovacoes" asp-action="Salvar"><i class="fas fa-plus-circle"></i> Salvar</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <form id="frm-pista" method="post" enctype="multipart/form-data" class="dropzone dz-clickable form-horizontal form-bordered">
+            @Html.HiddenFor(model => model.id_pista)
+            <div class="form-group row">
+                <label asp-for="nm_pista" class="col-sm-2 col-form-label">Nome</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.nm_pista, new { @class = "form-control", placeholder = "Nome completo" })
+                    @Html.ValidationMessageFor(model => model.nm_pista)
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="ds_pista" class="col-sm-2 col-form-label">Descrição da Pista</label>
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(model => model.ds_pista, new { @class = "form-control", placeholder = "Descrição" })
+                    @Html.ValidationMessageFor(model => model.ds_pista)
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="fl_paga" class="col-sm-1 col-form-label">É paga?</label>
+                <div class="col-lg-1">
+                    @Html.CheckBoxFor(model => model.BoolPaga, new { @checked = Model.BoolPaga, @class = "form-control", placeholder = "Descrição" })
+                    @Html.ValidationMessageFor(model => model.fl_paga)
+                </div>
+                <label asp-for="fl_pista_ativa" class="col-sm-1 col-form-label">Ativa ?</label>
+                <div class="col-lg-2">
+                    @Html.CheckBoxFor(model => model.BoolAtiva, new { @checked = Model.BoolAtiva, @class = "form-control", placeholder = "Ativa" })
+                    @Html.ValidationMessageFor(model => model.fl_paga)
+                </div>
+                <label asp-for="fl_capacete" class="col-sm-1 col-form-label">Capacete Obr. ?</label>
+                <div class="col-lg-1">
+                    @Html.CheckBoxFor(model => model.BoolCapacete, new { @checked = Model.BoolCapacete, @class = "form-control", placeholder = "Ativa" })
+                    @Html.ValidationMessageFor(model => model.BoolCapacete)
+                </div>
+                <label asp-for="fl_aluga_capacete" class="col-sm-1 col-form-label">Aluga Cap. ?</label>
+                <div class="col-lg-1">
+                    @Html.CheckBoxFor(model => model.BoolAluga, new { @checked = Model.BoolAluga, @class = "form-control", placeholder = "Ativa" })
+                    @Html.ValidationMessageFor(model => model.BoolAluga)
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="ds_horario_funcionamento" class="col-sm-2 col-form-label">Horario de funcionamento</label>
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(model => model.ds_horario_funcionamento, new { @class = "form-control", placeholder = "Horario de funcionamento" })
+                    @Html.ValidationMessageFor(model => model.ds_horario_funcionamento)
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="nr_nota" class="col-sm-2 col-form-label">Nota da pista</label>
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(model => model.nr_nota, new { @class = "form-control", placeholder = "Nota" })
+                    @Html.ValidationMessageFor(model => model.nr_nota)
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="id_tamanho" class="col-sm-2 col-form-label">Tamanho</label>
+                <div class="col-lg-2">
+                    @Html.DropDownListFor(model => model.id_tamanho, new SelectList(Model.tamanhos, "Value", "Text"), new { id = "tamanhocombo", @class = "form-control" })
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <label asp-for="ds_notas_gerais" class="col-sm-2 col-form-label">Observações</label>
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(model => model.ds_notas_gerais, new { @class = "form-control", placeholder = "Observações" })
+                    @Html.ValidationMessageFor(model => model.ds_notas_gerais)
+                </div>
+            </div>
+            <br>
+            <br>
+            <label class="col-sm-2 col-form-label"><b>Modalidades da pista:</b></label>
+
+            <div class="form-group row">
+                <label asp-for="fl_paga" class="col-sm-1 col-form-label">Street</label>
+                <div class="col-lg-1">
+                    @Html.CheckBoxFor(model => model.BoolPaga, new { @checked = Model.BoolPaga, @class = "form-control", placeholder = "Descrição" })
+                    @Html.ValidationMessageFor(model => model.fl_paga)
+                </div>
+                <label asp-for="fl_pista_ativa" class="col-sm-1 col-form-label">Bowl/Banks</label>
+                <div class="col-lg-2">
+                    @Html.CheckBoxFor(model => model.BoolAtiva, new { @checked = Model.BoolAtiva, @class = "form-control", placeholder = "Ativa" })
+                    @Html.ValidationMessageFor(model => model.fl_paga)
+                </div>
+                <label asp-for="fl_capacete" class="col-sm-1 col-form-label">Mini Ramp</label>
+                <div class="col-lg-1">
+                    @Html.CheckBoxFor(model => model.BoolAtiva, new { @checked = Model.BoolAtiva, @class = "form-control", placeholder = "Ativa" })
+                    @Html.ValidationMessageFor(model => model.fl_capacete)
+                </div>
+                <label asp-for="fl_aluga_capacete" class="col-sm-1 col-form-label">Half Pipe</label>
+                <div class="col-lg-1">
+                    @Html.CheckBoxFor(model => model.BoolAtiva, new { @checked = Model.BoolAtiva, @class = "form-control", placeholder = "Ativa" })
+                    @Html.ValidationMessageFor(model => model.fl_aluga_capacete)
+                </div>
+                <label asp-for="fl_aluga_capacete" class="col-sm-1 col-form-label">Plano</label>
+                <div class="col-lg-1">
+                    @Html.CheckBoxFor(model => model.BoolAtiva, new { @checked = Model.BoolAtiva, @class = "form-control", placeholder = "Ativa" })
+                    @Html.ValidationMessageFor(model => model.fl_aluga_capacete)
+                </div>
+            </div>
+            <br>
+            <br>
+            <label class="col-sm-2 col-form-label"><b>Dificuldades da pista:</b></label>
+            <div class="form-group row">
+                <label asp-for="fl_paga" class="col-sm-1 col-form-label">Facil</label>
+                <div class="col-lg-1">
+                    @Html.CheckBoxFor(model => model.BoolPaga, new { @checked = Model.BoolPaga, @class = "form-control", placeholder = "Descrição" })
+                    @Html.ValidationMessageFor(model => model.fl_paga)
+                </div>
+                <label asp-for="fl_pista_ativa" class="col-sm-1 col-form-label">Média/Facil</label>
+                <div class="col-lg-2">
+                    @Html.CheckBoxFor(model => model.BoolAtiva, new { @checked = Model.BoolAtiva, @class = "form-control", placeholder = "Ativa" })
+                    @Html.ValidationMessageFor(model => model.fl_paga)
+                </div>
+                <label asp-for="fl_capacete" class="col-sm-1 col-form-label">Média/Difícil</label>
+                <div class="col-lg-1">
+                    @Html.CheckBoxFor(model => model.BoolAtiva, new { @checked = Model.BoolAtiva, @class = "form-control", placeholder = "Ativa" })
+                    @Html.ValidationMessageFor(model => model.fl_capacete)
+                </div>
+                <label asp-for="fl_aluga_capacete" class="col-sm-1 col-form-label">Difícil</label>
+                <div class="col-lg-1">
+                    @Html.CheckBoxFor(model => model.BoolAtiva, new { @checked = Model.BoolAtiva, @class = "form-control", placeholder = "Ativa" })
+                    @Html.ValidationMessageFor(model => model.fl_aluga_capacete)
+                </div>
+                <label asp-for="fl_aluga_capacete" class="col-sm-1 col-form-label">Pró</label>
+                <div class="col-lg-1">
+                    @Html.CheckBoxFor(model => model.BoolAtiva, new { @checked = Model.BoolAtiva, @class = "form-control", placeholder = "Ativa" })
+                    @Html.ValidationMessageFor(model => model.fl_aluga_capacete)
+                </div>
+            </div>
+
+            <br>
+            <br>
+
+
+            <div class="form-group row">
+                <label asp-for="ds_endereco" class="col-sm-2 col-form-label">Rua/Av.</label>
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(model => model.ds_endereco, new { @class = "form-control", placeholder = "Observações" })
+                    @Html.ValidationMessageFor(model => model.ds_endereco)
+                </div>
+                <label asp-for="nr_endereco" class="col-sm-2 col-form-label">Número</label>
+                <div class="col-lg-2">
+                    @Html.TextBoxFor(model => model.nr_endereco, new { @class = "form-control", placeholder = "Observações" })
+                    @Html.ValidationMessageFor(model => model.nr_endereco)
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="cd_cep" class="col-sm-2 col-form-label">Cep</label>
+                <div class="col-lg-2">
+                    @Html.TextBoxFor(model => model.cd_cep, new { @class = "form-control", placeholder = "Observações" })
+                    @Html.ValidationMessageFor(model => model.cd_cep)
+                </div>
+                <label asp-for="nr_latitude" class="col-sm-2 col-form-label">Latitude</label>
+                <div class="col-lg-2">
+                    @Html.TextBoxFor(model => model.nr_latitude, new { @class = "form-control", placeholder = "Observações" })
+                    @Html.ValidationMessageFor(model => model.nr_latitude)
+                </div>
+                <label asp-for="nr_longitude" class="col-sm-2 col-form-label">Longitude</label>
+                <div class="col-lg-2">
+                    @Html.TextBoxFor(model => model.nr_longitude, new { @class = "form-control", placeholder = "Observações" })
+                    @Html.ValidationMessageFor(model => model.nr_longitude)
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label asp-for="id_estado" class="col-sm-2 col-form-label">Estado</label>
+                <div class="col-lg-2">
+                    @Html.DropDownListFor(model => model.id_estado, new SelectList(Model.estados, "Value", "Text"), new { id = "tamanhocombo", @class = "form-control" })
+                </div>
+                <label asp-for="id_cidade" class="col-sm-2 col-form-label">Cidade</label>
+                <div class="col-lg-2">
+                    @Html.DropDownListFor(model => model.id_cidade, new SelectList(Model.cidades, "Value", "Text"), new { id = "tamanhocombo", @class = "form-control" })
+                </div>
+
+            </div>
+
+
+
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="form-group row">
+                <label asp-for="modalidades" class="col-sm-2 col-form-label">Status</label>
+                <div class="col-lg-2">
+                    @Html.DropDownListFor(m=>m.modalidadesSelecionadas, new MultiSelectList(Model.modalidades, "Value", "Text"), new { id = "modalidadescombo", @class = "form-control", @multiple = "true" })
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <label asp-for="id_status_aprovacao" class="col-sm-2 col-form-label">Status</label>
+                <div class="col-lg-2">
+                    @Html.DropDownListFor(model => model.id_status_aprovacao, new SelectList(Model.status, "Value", "Text"), new { id = "tamanhocombo", @class = "form-control" })
+                </div>
+
+            </div>
+
+        </form>
+
+
+    </div>
+
+</div>

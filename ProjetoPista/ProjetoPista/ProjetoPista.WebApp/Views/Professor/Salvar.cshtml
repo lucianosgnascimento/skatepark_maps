@@ -1,0 +1,162 @@
+﻿@model ProjetoPista.Model.Dtos.ProfessorDto
+@section Scripts
+    {
+    <script src="~/js/Professor/SalvarProfessor.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#modalidadescombo').multiselect();
+        });
+    </script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="~/css/bootstrap-multiselect.css" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/bootstrap-multiselect.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript">
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h2 class="display-4">@ViewData["Title"]</h2>
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-4">
+        <div class="col">
+            <a class="btn btn-primary" asp-controller="Professor" asp-action="Consultar"><i class="fas fa-arrow-circle-left"></i> Voltar</a>
+            @*<a id="btn-salvar" class="btn btn-primary" asp-controller="Professor" asp-action="Salvar"><i class="fas fa-plus-circle"></i> Salvar</a>*@
+            <input class="btn btn-primary" type="submit" value="Salvar" form="frm-professor" />
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <form id="frm-professor" asp-controller="Professor" asp-action="Salvar" method="post" enctype="multipart/form-data">
+                @Html.HiddenFor(model => model.id_professor)
+                <div class="form-group row">
+                    <label asp-for="nm_professor" class="col-sm-2 col-form-label">Nome</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.nm_professor, new { @class = "form-control", placeholder = "Nome completo" })
+                        @Html.ValidationMessageFor(model => model.nm_professor, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="cd_cpf" class="col-sm-2 col-form-label">CPF</label>
+                    <div class="col-lg-4">
+                        @Html.TextBoxFor(model => model.cd_cpf, new { @class = "form-control", placeholder = "000000000-00" })
+                        @Html.ValidationMessageFor(model => model.cd_cpf, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                    <label asp-for="ds_telefone" class="col-sm-2 col-form-label">Telefone</label>
+                    <div class="col-lg-4">
+                        @Html.TextBoxFor(model => model.ds_telefone, new { @class = "form-control", placeholder = "(DDD) 00000-0000" })
+                        @Html.ValidationMessageFor(model => model.ds_telefone, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="ds_email" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-lg-10">
+                        @Html.TextBoxFor(model => model.ds_email, new { @class = "form-control", placeholder = "email@email.com", @type = "Email" })
+                        @Html.ValidationMessageFor(model => model.ds_email, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="ds_instagram" class="col-sm-2 col-form-label">Instagram</label>
+                    <div class="col-lg-10">
+                        @Html.TextBoxFor(model => model.ds_instagram, new { @class = "form-control", placeholder = "@insta ou Link" })
+                        @Html.ValidationMessageFor(model => model.ds_instagram, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="nm_apelido" class="col-sm-2 col-form-label">Apelido</label>
+                    <div class="col-lg-4">
+                        @Html.TextBoxFor(model => model.nm_apelido, new { @class = "form-control", placeholder = "Apelido" })
+                        @Html.ValidationMessageFor(model => model.nm_apelido, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                    <label asp-for="vl_hora_aula" class="col-sm-2 col-form-label">Valor Hora Aula</label>
+                    <div class="col-lg-4">
+                        @Html.TextBoxFor(model => model.vl_hora_aula, new { @class = "form-control", placeholder = "R$ hora" })
+                        @Html.ValidationMessageFor(model => model.vl_hora_aula, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @if (Model.id_professor != 0)
+                    {
+            <label asp-for="nr_estrelas" class="col-sm-2 col-form-label">Estrelas</label>
+                            <div class="col-lg-2">
+                                @Html.DropDownListFor(m => m.nr_estrelas, Enumerable.Range(1, 5).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { id = "estrelasCombo", @class = "form-control" })
+                            </div>}
+                    <label asp-for="nr_anos_experiencia" class="col-sm-2 col-form-label">Anos Experiencia</label>
+                    <div class="col-lg-2">
+                        @Html.DropDownListFor(m => m.nr_anos_experiencia, Enumerable.Range(0, 30).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }),"Selecione o(s) anos(s)", new { id = "anosCombo", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.nr_anos_experiencia, string.Empty, htmlAttributes: new { @class = "text-danger" })
+
+                    </div>
+                    @if (Model.id_professor != 0)
+                    {
+            <label asp-for="BoolAtivo" class="col-sm-1 col-form-label">Ativo ?</label>
+                            <div class="col-lg-2">
+                                @Html.CheckBoxFor(model => model.BoolAtivo, new { @checked = Model.BoolAtivo, @class = "form-control", placeholder = "Ativo" })
+                                @Html.ValidationMessageFor(model => model.fl_ativo)
+                            </div>}
+
+                </div>
+
+                <br>
+                <br>
+                <div class="form-group row">
+                    <label asp-for="ids_pistas_professor" class="col-sm-3 col-form-label">Pistas do Professor</label>
+                    <div class="col-lg-5">
+                        @Html.ListBoxFor(m => m.ids_pistas_professor, new MultiSelectList(Model.pistas, "Value", "Text"), new { id = "modalidadescombo", multiple = "multiple" })
+                        @Html.ValidationMessageFor(model => model.ids_pistas_professor, string.Empty, htmlAttributes: new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label asp-for="ProfileImage" class="col-sm-3 col-form-label">Imagem de perfil</label>
+                        <div class="custom-file">
+                            <input asp-for="ProfileImage" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">Escolha a foto</label>
+                        </div>
+                        <span asp-validation-for="ProfileImage" class="text-danger"></span>
+                    </div>
+                </div>
+                @if (Model.id_professor != 0)
+                {
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <img src="~/imagensProf/@Model.nm_profile" height="120" width="120" />
+                    </div>
+                </div>
+                }
+                    <br>
+                    @if (Model.id_professor != 0)
+                    {
+                <div class="form-group row">
+                    <label asp-for="id_status_aprovacao" class="col-sm-2 col-form-label">Status</label>
+                    <div class="col-lg-2">
+                        @Html.DropDownListFor(model => model.id_status_aprovacao, new SelectList(Model.status, "Value", "Text"), new { id = "tamanhocombo", @class = "form-control" })
+                    </div>
+
+                </div>}
+</form>
+
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,820 @@
+﻿@model ProjetoPista.Model.Dtos.PistaDto
+@section Scripts
+    {
+    <script src="~/js/Aprovacoes/SalvarPista.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#modalidadescombo').multiselect();
+        });
+        $(document).ready(function () {
+            $('#niveisCombo').multiselect();
+        });
+
+    </script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="~/css/bootstrap-multiselect.css" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/bootstrap-multiselect.js"></script>
+
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+
+    <script type="text/javascript">
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+            //$("form").validate().settings.ignore = ".data-val-ignore, :hidden, :disabled";
+        $(document).ready(function (eve) {
+            $("#nr_nota").val(""); // to rest as empty.
+        });
+
+
+    </script>
+    <script>
+        $(document).ready(function () {
+
+            var current_fs, next_fs, previous_fs; //fieldsets
+            var opacity;
+
+            $(".next").click(function () {
+
+                current_fs = $(this).parent();
+                next_fs = $(this).parent().next();
+
+                //Add Class Active
+                $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+                //show the next fieldset
+                next_fs.show();
+                //hide the current fieldset with style
+                current_fs.animate({ opacity: 0 }, {
+                    step: function (now) {
+                        // for making fielset appear animation
+                        opacity = 1 - now;
+
+                        current_fs.css({
+                            'display': 'none',
+                            'position': 'relative'
+                        });
+                        next_fs.css({ 'opacity': opacity });
+                    },
+                    duration: 600
+                });
+            });
+
+            $(".previous").click(function () {
+
+                current_fs = $(this).parent();
+                previous_fs = $(this).parent().prev();
+
+                //Remove class active
+                $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+                //show the previous fieldset
+                previous_fs.show();
+
+                //hide the current fieldset with style
+                current_fs.animate({ opacity: 0 }, {
+                    step: function (now) {
+                        // for making fielset appear animation
+                        opacity = 1 - now;
+
+                        current_fs.css({
+                            'display': 'none',
+                            'position': 'relative'
+                        });
+                        previous_fs.css({ 'opacity': opacity });
+                    },
+                    duration: 600
+                });
+            });
+
+            $('.radio-group .radio').click(function () {
+                $(this).parent().find('.radio').removeClass('selected');
+                $(this).addClass('selected');
+            });
+
+            $(".submit").click(function () {
+                return false;
+            })
+
+        });
+    </script>
+}
+@{ var tempData = TempData["ErroAutenticacao"];
+    var erroAutenticacao = tempData != null ? tempData.ToString() : string.Empty; }
+
+<style>
+
+    input[type = "checkbox"][id ^= "myCheckbox"] {
+        display: none;
+    }
+
+    .spot-type label {
+        border: 1px solid #fff;
+        padding: 10px;
+        /*display: block;*/
+        position: relative;
+        margin: 10px;
+        cursor: pointer;
+    }
+
+    label:before {
+        background-color: white;
+        color: white;
+        content: " ";
+        display: block;
+        border-radius: 3%;
+        border: 0px solid grey;
+        position: absolute;
+        /*top: -5px;
+        left: -5px;*/
+        top: 6px;
+        left: 6px;
+        width: 25px;
+        height: 25px;
+        text-align: center;
+        /*line-height: 28px;*/
+        transition-duration: 0.4s;
+        transform: scale(0);
+        z-index: 2;
+    }
+
+    .line label img {
+        height: 80px;
+        width: 80px;
+        transition-duration: 0.2s;
+        transform-origin: 50% 50%;
+    }
+    .five label img {
+        height: 100px;
+        width: 100px;
+        transition-duration: 0.2s;
+        transform-origin: 50% 50%;
+    }
+
+    :checked + label {
+        border-color: #9D1B2C;
+    }
+
+        :checked + label:before {
+            content: "✓";
+            background-color: #9D1B2C;
+            transform: scale(1);
+        }
+
+        :checked + label img {
+            transform: scale(0.9);
+            /* box-shadow: 0 0 5px #333; */
+            z-index: -1;
+        }
+
+    .spot-type {
+        display: block;
+        position: relative;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        min-height: 90px;
+        float: left;
+        text-align: center;
+        padding: 10px 5px 10px;
+        /*opacity: .4;*/
+        cursor: pointer;
+        border: 0px solid transparent;
+        border-radius: 3px;
+        -webkit-transition: opacity .3s;
+        transition: opacity .3s;
+    }
+
+    .line {
+        width: 20%;
+    }
+    .five {
+        width: 33%;
+    }
+    .spot-type-dummy {
+        display: block;
+        position: relative;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 16.5%;
+        min-height: 90px;
+        float: left;
+        text-align: center;
+        /*opacity: .4;*/
+        cursor: pointer;
+        -webkit-transition: opacity .3s;
+        transition: opacity .3s;
+    }
+
+        .spot-type span {
+            display: block;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 14px;
+        }
+
+        .spot-type img {
+            margin-bottom: 5px;
+            width: 55px;
+        }
+
+    /*/////////////////////////////////////////////////////////////*/
+
+    #grad1 {
+        background-color: : #9C27B0;
+        /*background-image: linear-gradient(120deg, #FF4081, #81D4FA)*/
+    }
+
+    #msform {
+        text-align: center;
+        position: relative;
+        margin-top: 20px
+    }
+
+        #msform fieldset .form-card {
+            background: white;
+            border: 0 none;
+            border-radius: 0px;
+            /*box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);*/
+            padding: 20px 40px 30px 40px;
+            box-sizing: border-box;
+            width: 94%;
+            margin: 0 3% 20px 3%;
+            position: relative
+        }
+        
+        #msform fieldset {
+            background: white;
+            border: 0 none;
+            border-radius: 0.5rem;
+            box-sizing: border-box;
+            width: 100%;
+            margin: 0;
+            padding-bottom: 20px;
+            position: relative
+        }
+
+            #msform fieldset:not(:first-of-type) {
+                display: none
+            }
+
+            #msform fieldset .form-card {
+                text-align: left;
+                color: #9E9E9E
+            }
+        /*
+        #msform input,
+        #msform textarea {
+            padding: 0px 8px 4px 8px;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            border-radius: 0px;
+            margin-bottom: 25px;
+            margin-top: 2px;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: montserrat;
+            color: #2C3E50;
+            font-size: 16px;
+            letter-spacing: 1px
+        }
+
+            #msform input:focus,
+            #msform textarea:focus {
+                -moz-box-shadow: none !important;
+                -webkit-box-shadow: none !important;
+                box-shadow: none !important;
+                border: none;
+                font-weight: bold;
+                border-bottom: 2px solid skyblue;
+                outline-width: 0
+            }
+*/
+        #msform .action-button {
+            width: 100px;
+            background: #9D1B2C;
+            font-weight: bold;
+            color: white;
+            border: 0 none;
+            border-radius: 3px;
+            cursor: pointer;
+            padding: 10px 5px;
+            margin: 10px 5px
+        }
+
+            #msform .action-button:hover,
+            #msform .action-button:focus {
+                box-shadow: 0 0 0 2px white, 0 0 0 3px skyblue
+            }
+
+        #msform .action-button-previous {
+            width: 100px;
+            background: #616161;
+            font-weight: bold;
+            color: white;
+            border: 0 none;
+            border-radius: 3px;
+            cursor: pointer;
+            padding: 10px 5px;
+            margin: 10px 5px
+        }
+
+            #msform .action-button-previous:hover,
+            #msform .action-button-previous:focus {
+                box-shadow: 0 0 0 2px white, 0 0 0 3px #616161
+            }
+
+    select.list-dt {
+        border: none;
+        outline: 0;
+        border-bottom: 1px solid #ccc;
+        padding: 2px 5px 3px 5px;
+        margin: 2px
+    }
+
+        select.list-dt:focus {
+            border-bottom: 2px solid skyblue
+        }
+
+    .card {
+        z-index: 0;
+        border: none;
+        border-radius: 0.5rem;
+        position: relative
+    }
+
+    .fs-title {
+        font-size: 25px;
+        color: #2C3E50;
+        margin-bottom: 10px;
+        font-weight: bold;
+        text-align: left
+    }
+
+    #progressbar {
+        margin-bottom: 30px;
+        overflow: hidden;
+        color: lightgrey;
+            padding:0;
+    }
+
+        #progressbar .active {
+            color: #000000
+        }
+
+        #progressbar li {
+            list-style-type: none;
+            font-size: 12px;
+            width: 16.66%;
+            float: left;
+            position: relative
+        }
+
+        #progressbar #account:before {
+            font-family: FontAwesome;
+            content: "\f023"
+        }
+
+        #progressbar #personal:before {
+            font-family: FontAwesome;
+            content: "\f007"
+        }
+
+        #progressbar #payment:before {
+            font-family: FontAwesome;
+            content: "\f09d"
+        }
+
+        #progressbar #confirm:before {
+            font-family: FontAwesome;
+            content: "\f00c"
+        }
+
+        #progressbar li:before {
+            width: 50px;
+            height: 50px;
+            line-height: 45px;
+            display: block;
+            font-size: 18px;
+            color: #ffffff;
+            background: lightgray;
+            border-radius: 5%;
+            margin: 0 auto 10px auto;
+            padding: 2px
+        }
+
+        #progressbar li:after {
+            content: '';
+            width: 100%;
+            height: 2px;
+            background: lightgray;
+            position: absolute;
+            left: 0;
+            top: 25px;
+            z-index: -1
+        }
+
+        #progressbar li.active:before,
+        #progressbar li.active:after {
+            background: #9D1B2C
+        }
+
+    .radio-group {
+        position: relative;
+        margin-bottom: 25px
+    }
+
+    .radio {
+        display: inline-block;
+        width: 204;
+        height: 104;
+        border-radius: 0;
+        background: lightblue;
+        box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+        box-sizing: border-box;
+        cursor: pointer;
+        margin: 8px 2px
+    }
+
+        .radio:hover {
+            box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3)
+        }
+
+        .radio.selected {
+            box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1)
+        }
+
+    .fit-image {
+        width: 100%;
+        object-fit: cover
+    }
+
+</style>
+
+
+
+<div class="container-fluid">
+
+    <div class="container-fluid  text-center">
+        <h2 style="color: #141301" class="display-4 p-2">Cadastros</h2>
+
+        <p>Cadastre sua pista favorita e ajude nossa plataforma.</p>
+    </div>
+
+
+    <!-- MultiStep Form -->
+    <div class="container-fluid" id="grad1">
+        <div class="row justify-content-center mt-0">
+            <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
+                <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                    <h2><strong>Cadastro da pista</strong></h2>
+                    <p>Preencha todos os campos para proxima etapa</p>
+                    <div class="row">
+                        <div class="col-md-12 mx-0">
+                            <form id="msform">
+                                <!-- progressbar -->
+                                <ul id="progressbar">
+                                    <li class="active" id="account"><strong>Pista</strong></li>
+                                    <li id="personal"><strong>Modalidades</strong></li>
+                                    <li id="payment"><strong>Estrutura</strong></li>
+                                    <li id="confirm"><strong>Endereço</strong></li>
+                                    <li id="confirm"><strong>Geral</strong></li>
+                                    <li id="confirm"><strong>Fim</strong></li>
+                                </ul> <!-- fieldsets -->
+                                <fieldset>
+                                    <div class="form-card">
+                                        <div class="form-group row">
+                                            <h4><strong>Pista</strong></h4>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                @Html.TextBoxFor(model => model.nm_pista, new { @class = "form-control", placeholder = "Nome completo" })
+                                                @Html.ValidationMessageFor(model => model.nm_pista, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                @Html.TextAreaFor(model => model.ds_pista, new { @class = "form-control", placeholder = "Descrição" })
+                                                @Html.ValidationMessageFor(model => model.ds_pista, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                @Html.TextBoxFor(model => model.ds_horario_funcionamento, new { @class = "form-control", placeholder = "Horario de funcionamento" })
+                                                @Html.ValidationMessageFor(model => model.ds_horario_funcionamento, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                @Html.TextBoxFor(model => model.nr_nota, new { @class = "form-control", placeholder = "Nota (0 a 10)", @Value = "" })
+                                                @Html.ValidationMessageFor(model => model.nr_nota, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                @Html.DropDownListFor(model => model.id_tamanho, new SelectList(Model.tamanhos, "Value", "Text"), "Selecione um tamanho", new { id = "tamanhocombo", @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.id_tamanho, string.Empty, htmlAttributes: new { @class = "text-danger" })
+
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                @Html.TextAreaFor(model => model.ds_notas_gerais, new { @class = "form-control", placeholder = "Observações" })
+                                                @Html.ValidationMessageFor(model => model.ds_notas_gerais)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="button" name="next" class="next action-button" value="Next Step" />
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card">
+
+                                        <div class="form-group row">
+                                            <h4><strong>Modalidades</strong></h4>
+                                        </div>
+                                        <div class="form-group row">
+
+                                            <div class="spot-type line">
+
+                                                <input type="checkbox" id="myCheckbox7" />
+                                                <label for="myCheckbox7">
+                                                    <img src="http://www.thebusinessofsports.com/wp-content/uploads/2010/10/facebook-icon-200x200.png" />
+                                                    <span>Street</span>
+
+                                                </label>
+                                            </div>
+                                            <div class="spot-type line">
+                                                <input type="checkbox" id="myCheckbox8" />
+                                                <label for="myCheckbox8">
+                                                    <img src="http://tech21info.com/admin/wp-content/uploads/2013/03/chrome-logo-200x200.png" />
+                                                    <span>Street</span>
+                                                </label>
+                                            </div>
+                                            <div class="spot-type line">
+                                                <input type="checkbox" id="myCheckbox9" />
+                                                <label for="myCheckbox9">
+                                                    <img src="http://tech21info.com/admin/wp-content/uploads/2013/03/chrome-logo-200x200.png" />
+                                                    <span>Street</span>
+                                                </label>
+                                            </div>
+                                            <div class="spot-type line">
+                                                <input type="checkbox" id="myCheckbox9" />
+                                                <label for="myCheckbox9">
+                                                    <img src="http://tech21info.com/admin/wp-content/uploads/2013/03/chrome-logo-200x200.png" />
+                                                    <span>Street</span>
+                                                </label>
+                                            </div>
+
+                                            <div class="spot-type line">
+                                                @Html.CheckBoxFor(model => model.BoolPaga, new { @checked = Model.BoolPaga, placeholder = "Descrição", id = "myCheckbox10" })
+                                                <label for="myCheckbox10">
+                                                    <img src="http://tech21info.com/admin/wp-content/uploads/2013/03/chrome-logo-200x200.png" />
+                                                    <span>Street</span>
+                                                </label>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="form-group row">
+                                            <h4><strong>Dificuldades</strong></h4>
+                                        </div>
+                                        <div class="form-group row">
+
+                                            <div class="spot-type line">
+
+                                                <input type="checkbox" id="myCheckbox7" />
+                                                <label for="myCheckbox7">
+                                                    <img src="http://www.thebusinessofsports.com/wp-content/uploads/2010/10/facebook-icon-200x200.png" />
+                                                    <span>Street</span>
+
+                                                </label>
+                                            </div>
+                                            <div class="spot-type line">
+                                                <input type="checkbox" id="myCheckbox8" />
+                                                <label for="myCheckbox8">
+                                                    <img src="http://tech21info.com/admin/wp-content/uploads/2013/03/chrome-logo-200x200.png" />
+                                                    <span>Street</span>
+                                                </label>
+                                            </div>
+                                            <div class="spot-type line">
+                                                <input type="checkbox" id="myCheckbox9" />
+                                                <label for="myCheckbox9">
+                                                    <img src="http://tech21info.com/admin/wp-content/uploads/2013/03/chrome-logo-200x200.png" />
+                                                    <span>Street</span>
+                                                </label>
+                                            </div>
+                                            <div class="spot-type line">
+                                                <input type="checkbox" id="myCheckbox9" />
+                                                <label for="myCheckbox9">
+                                                    <img src="http://tech21info.com/admin/wp-content/uploads/2013/03/chrome-logo-200x200.png" />
+                                                    <span>Street</span>
+                                                </label>
+                                            </div>
+
+                                            <div class="spot-type line">
+                                                @Html.CheckBoxFor(model => model.BoolPaga, new { @checked = Model.BoolPaga, placeholder = "Descrição", id = "myCheckbox10" })
+                                                <label for="myCheckbox10">
+                                                    <img src="http://tech21info.com/admin/wp-content/uploads/2013/03/chrome-logo-200x200.png" />
+                                                    <span>Street</span>
+                                                </label>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div> <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> <input type="button" name="next" class="next action-button" value="Next Step" />
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card">
+                                        <div class="form-group row">
+                                            <h4><strong>Estrutura</strong></h4>
+                                        </div>
+                                        <div class="form-group row">
+
+                                            <div class="spot-type five">
+
+                                                <input type="checkbox" id="myCheckbox7" />
+                                                <label for="myCheckbox7">
+                                                    <img src="http://www.thebusinessofsports.com/wp-content/uploads/2010/10/facebook-icon-200x200.png" />
+                                                    <span>Street</span>
+
+                                                </label>
+                                            </div>
+                                            <div class="spot-type five">
+                                                <input type="checkbox" id="myCheckbox8" />
+                                                <label for="myCheckbox8">
+                                                    <img src="http://tech21info.com/admin/wp-content/uploads/2013/03/chrome-logo-200x200.png" />
+                                                    <span>Street</span>
+                                                </label>
+                                            </div>
+                                            <div class="spot-type five">
+                                                <input type="checkbox" id="myCheckbox9" />
+                                                <label for="myCheckbox9">
+                                                    <img src="http://tech21info.com/admin/wp-content/uploads/2013/03/chrome-logo-200x200.png" />
+                                                    <span>Street</span>
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group row">
+
+                                            <div class="spot-type-dummy">
+                                                <label for="myCheckboxx">
+                                                    <span> </span>
+                                                </label>
+                                            </div>
+                                            <div class="spot-type five">
+                                                @Html.CheckBoxFor(model => model.BoolPaga, new { @checked = Model.BoolPaga, placeholder = "Descrição", id = "myCheckbox10" })
+                                                <label for="myCheckbox10">
+                                                    <img src="http://tech21info.com/admin/wp-content/uploads/2013/03/chrome-logo-200x200.png" />
+                                                    <span>Street</span>
+                                                </label>
+                                            </div>
+                                            <div class="spot-type five">
+                                                @Html.CheckBoxFor(model => model.BoolPaga, new { @checked = Model.BoolPaga, placeholder = "Descrição", id = "myCheckbox11" })
+                                                <label for="myCheckbox11">
+                                                    <img src="http://tech21info.com/admin/wp-content/uploads/2013/03/chrome-logo-200x200.png" />
+                                                    <span>Street</span>
+                                                </label>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div> <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> <input type="button" name="next" class="next action-button" value="Next Step" />
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card">
+                                        <div class="form-group row">
+                                            <h4><strong>Localização</strong></h4>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                @Html.TextBoxFor(model => model.ds_endereco, new { @class = "form-control", placeholder = "Endereço" })
+                                                @Html.ValidationMessageFor(model => model.ds_endereco, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                @Html.TextBoxFor(model => model.nr_endereco, new { @class = "form-control", placeholder = "Número" })
+                                                @Html.ValidationMessageFor(model => model.nr_endereco, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                @Html.TextBoxFor(model => model.cd_cep, new { @class = "form-control", placeholder = "Cep (xxxxx-xxx)" })
+                                                @Html.ValidationMessageFor(model => model.cd_cep, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        @*
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                @Html.TextBoxFor(model => model.latitude, new { @class = "form-control data-val-ignore", placeholder = "Latitude" })
+                                                @Html.ValidationMessageFor(model => model.latitude, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                @Html.TextBoxFor(model => model.longitude, new { @class = "form-control data-val-ignore", placeholder = "Longitude" })
+                                                @Html.ValidationMessageFor(model => model.longitude, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        *@
+
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                @Html.DropDownListFor(model => model.id_estado, new SelectList(Model.estados, "Value", "Text"), "Selecione um Estado", new { id = "estadoCombo", @class = "form-control" })
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                @Html.DropDownListFor(model => model.id_cidade, new SelectList(Model.cidades, "Value", "Text"), "Selecione um Município", new { id = "cidadeCombo", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                @Html.ValidationMessageFor(model => model.id_estado, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                @Html.ValidationMessageFor(model => model.id_cidade, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <h4><strong>Imagens da Pista</strong></h4>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group row">
+                                                    <div class="custom-file">
+                                                        <input asp-for="imagens_pista" class="custom-file-input" id="customFile" multiple="multiple">
+                                                        <label class="custom-file-label" for="customFile">Escolha as imagens</label>
+                                                    </div>
+                                                    <span asp-validation-for="imagens_pista" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> <input type="button" name="make_payment" class="next action-button" value="Confirm" />
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card">
+
+                                        <div class="form-group row">
+                                            <h4><strong>Sobre você</strong></h4>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                @Html.TextBoxFor(model => model.nm_usuario_envio, new { @class = "form-control", placeholder = "Nome" })
+                                                @Html.ValidationMessageFor(model => model.nm_usuario_envio, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                @Html.TextBoxFor(model => model.nr_telefone, new { @class = "form-control", placeholder = "Telefone" })
+                                                @Html.ValidationMessageFor(model => model.nr_telefone, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                @Html.TextBoxFor(model => model.ds_email, new { @class = "form-control", placeholder = "Email" })
+                                                @Html.ValidationMessageFor(model => model.ds_email, string.Empty, htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> <input type="button" name="make_payment" class="next action-button" value="Confirm" />
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card">
+                                        <h2 class="fs-title text-center">Success !</h2> <br><br>
+                                        <div class="row justify-content-center">
+                                            <div class="col-3"> <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image"> </div>
+                                        </div> <br><br>
+                                                   <div class="row justify-content-center">
+                                                       <div class="col-7 text-center">
+                                                           <h5>Cadastro realizado com sucesso !</h5>
+                                                       </div>
+                                                       <div class="col-7 text-center">
+                                                           <h5>Assim que aprovar-mos ela estará disponível para todos!</h5>
+                                                       </div>
+                                                   </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

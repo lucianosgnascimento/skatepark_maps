@@ -1,0 +1,82 @@
+﻿@model ProjetoPista.Model.Dtos.PistaDto
+@section Scripts
+    {
+
+    <link rel="stylesheet" href="~/css/basic.css" />
+    <link rel="stylesheet" href="~/css/dropzone.css" />
+    <script type="text/javascript" src="~/js/dropzone.js"></script>
+    <script type="text/javascript" src="~/js/dropzone-amd-module.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+
+        Dropzone.autoDiscover = false;
+
+        var options = {
+            paramName: "formFile",
+            addRemoveLinks: true,
+            autoDiscover: false,
+            autoProcessQueue: false,
+            uploadMultiple: true,
+            parallelUploads: 5,
+            thumbnailWidth: 250,
+            thumbnailHeight: 250,
+            dictRemoveFile: 'Delete',
+            previewsContainer: '#dropzonePreview',
+            clickable: '.dropzone',
+            acceptedFiles: ".jpeg,.jpg,.png",
+        };
+
+        var dropZone = new Dropzone("form#ajaxForm", options);
+
+        dropZone.element.querySelector("input[type=submit]").addEventListener("click", function (e) {
+            // Make sure that the form isn't actually being sent.
+            e.preventDefault();
+            e.stopPropagation();
+
+            // if dropzone has file process them, if not send empty array
+            if (dropZone.getQueuedFiles().length > 0) {
+                //alert(dropZone.getQueuedFiles());
+                //console.log(getQueuedFiles());
+                dropZone.processQueue();
+            } else {
+                $("#ajaxForm").submit();
+            }
+        });
+
+        dropZone.on("successmultiple", function (files, response) {
+            // Gets triggered when the files have successfully been sent.
+            // Redirect user or notify of success.
+            OnSuccess(response);
+        });
+        dropZone.on("errormultiple", function (files, response) {
+            // Gets triggered when there was an error sending the files.
+            // Maybe show form again, and notify user of error
+            OnFailure(response);
+        });
+
+    </script>
+
+}
+
+
+
+
+
+<form id="ajaxForm" name="files" method="post" asp-controller="Aprovacoes" asp-action="InsertPhotos" data-ajax-method="POST" data-ajax-begin="OnBegin" data-ajax-success="OnSuccess" data-ajax-failure="OnFailure" enctype="multipart/form-data">
+    <div class="card">
+        <div class="card-body">
+            <div class="col-md-12 dropzone">
+                <div class="dropzone-previews" id="dropzonePreview">
+                    <i class="icon-file-upload icon-5x absolute-center text-muted"></i>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group mt-3">
+            <div class="col-md-12">
+                <input class="btn btn-inverse btn-primary" id="btnSubmit" name="inputSubmit" type="submit" value="Save" />
+            </div>
+        </div>
+    </div>
+</form>
+
+

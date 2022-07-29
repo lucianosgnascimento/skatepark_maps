@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "t0BWNpt3AdEgRwRvGuxy4Iqzzfwz/IxVfbuk3M2oJFUO/eJfnS5DBmgxj2h/1GhiwonooeCutFmi61KrpFqQDw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lucia\\Desktop\\Projeto Plataforma Pistas\\ProjetoPista\\ProjetoPista\\ProjetoPista.Utils\\ProjetoPista.Utils.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lucia\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.9\\microsoft.aspnetcore.cryptography.internal.5.0.9.nupkg.sha512",
+    "C:\\Users\\lucia\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.9\\microsoft.aspnetcore.cryptography.keyderivation.5.0.9.nupkg.sha512"
+  ],
+  "logs": []
+}

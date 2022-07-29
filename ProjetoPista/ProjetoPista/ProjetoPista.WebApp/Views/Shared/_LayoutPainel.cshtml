@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<style>
+    .container-fluid {
+        background-color: #F4F4F5;
+    }
+</style>
+<html>
+<head>
+    <partial name="_Head" />
+</head>
+<body style="background-color: #F4F4F5;">
+    <div  style="margin-left: 0px;">
+        <partial name="_Navbar" />
+
+            <partial name="_CookieConsentPartial" />
+            <main id="main"  role="main" class="pb-0" style="transition: margin-left .5s;">
+                @RenderBody()
+            </main>
+
+        @*<partial name="_Footer" />*@
+        <partial name="_Scripts" />
+
+        @RenderSection("Scripts", required: false)
+     </div>
+</body>
+</html>

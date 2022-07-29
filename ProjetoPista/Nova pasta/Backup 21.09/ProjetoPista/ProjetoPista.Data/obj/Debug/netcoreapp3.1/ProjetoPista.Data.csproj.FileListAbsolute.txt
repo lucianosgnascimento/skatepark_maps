@@ -1,0 +1,16 @@
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Data\obj\Debug\netcoreapp3.1\ProjetoPista.Data.csproj.AssemblyReference.cache
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Data\obj\Debug\netcoreapp3.1\ProjetoPista.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Data\obj\Debug\netcoreapp3.1\ProjetoPista.Data.AssemblyInfoInputs.cache
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Data\obj\Debug\netcoreapp3.1\ProjetoPista.Data.AssemblyInfo.cs
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Data\obj\Debug\netcoreapp3.1\ProjetoPista.Data.csproj.CoreCompileInputs.cache
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Data\bin\Debug\netcoreapp3.1\ProjetoPista.Data.deps.json
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Data\bin\Debug\netcoreapp3.1\ProjetoPista.Data.runtimeconfig.json
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Data\bin\Debug\netcoreapp3.1\ProjetoPista.Data.runtimeconfig.dev.json
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Data\bin\Debug\netcoreapp3.1\ProjetoPista.Data.dll
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Data\bin\Debug\netcoreapp3.1\ProjetoPista.Data.pdb
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Data\bin\Debug\netcoreapp3.1\ProjetoPista.Model.dll
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Data\bin\Debug\netcoreapp3.1\ProjetoPista.Model.pdb
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Data\obj\Debug\netcoreapp3.1\ProjetoPista.Data.csproj.CopyComplete
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Data\obj\Debug\netcoreapp3.1\ProjetoPista.Data.dll
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Data\obj\Debug\netcoreapp3.1\ProjetoPista.Data.pdb
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Data\obj\Debug\netcoreapp3.1\ProjetoPista.Data.genruntimeconfig.cache

@@ -1,0 +1,17 @@
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Business\obj\Debug\netcoreapp3.1\ProjetoPista.Business.csproj.AssemblyReference.cache
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Business\obj\Debug\netcoreapp3.1\ProjetoPista.Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Business\obj\Debug\netcoreapp3.1\ProjetoPista.Business.AssemblyInfoInputs.cache
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Business\obj\Debug\netcoreapp3.1\ProjetoPista.Business.AssemblyInfo.cs
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Business\obj\Debug\netcoreapp3.1\ProjetoPista.Business.csproj.CoreCompileInputs.cache
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Business\bin\Debug\netcoreapp3.1\ProjetoPista.Business.deps.json
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Business\bin\Debug\netcoreapp3.1\ProjetoPista.Business.dll
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Business\bin\Debug\netcoreapp3.1\ProjetoPista.Business.pdb
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Business\bin\Debug\netcoreapp3.1\ProjetoPista.Model.dll
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Business\bin\Debug\netcoreapp3.1\ProjetoPista.Utils.dll
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Business\bin\Debug\netcoreapp3.1\ProjetoPista.Model.pdb
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Business\bin\Debug\netcoreapp3.1\ProjetoPista.Utils.pdb
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Business\obj\Debug\netcoreapp3.1\ProjetoPista.Business.csproj.CopyComplete
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Business\obj\Debug\netcoreapp3.1\ProjetoPista.Business.dll
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Business\obj\Debug\netcoreapp3.1\ProjetoPista.Business.pdb
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Business\bin\Debug\netcoreapp3.1\ProjetoPista.Data.dll
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Business\bin\Debug\netcoreapp3.1\ProjetoPista.Data.pdb

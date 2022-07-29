@@ -1,0 +1,16 @@
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Tests\bin\Debug\netcoreapp3.1\ProjetoPista.Tests.deps.json
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Tests\bin\Debug\netcoreapp3.1\ProjetoPista.Tests.runtimeconfig.json
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Tests\bin\Debug\netcoreapp3.1\ProjetoPista.Tests.runtimeconfig.dev.json
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Tests\bin\Debug\netcoreapp3.1\ProjetoPista.Tests.dll
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Tests\bin\Debug\netcoreapp3.1\ProjetoPista.Tests.pdb
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Tests\bin\Debug\netcoreapp3.1\ProjetoPista.Utils.dll
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Tests\bin\Debug\netcoreapp3.1\ProjetoPista.Utils.pdb
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Tests\obj\Debug\netcoreapp3.1\ProjetoPista.Tests.csproj.AssemblyReference.cache
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Tests\obj\Debug\netcoreapp3.1\ProjetoPista.Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Tests\obj\Debug\netcoreapp3.1\ProjetoPista.Tests.AssemblyInfoInputs.cache
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Tests\obj\Debug\netcoreapp3.1\ProjetoPista.Tests.AssemblyInfo.cs
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Tests\obj\Debug\netcoreapp3.1\ProjetoPista.Tests.csproj.CoreCompileInputs.cache
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Tests\obj\Debug\netcoreapp3.1\ProjetoPista.Tests.csproj.CopyComplete
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Tests\obj\Debug\netcoreapp3.1\ProjetoPista.Tests.dll
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Tests\obj\Debug\netcoreapp3.1\ProjetoPista.Tests.pdb
+C:\Users\lucia\Desktop\Projeto Plataforma Pistas\ProjetoPista\ProjetoPista\ProjetoPista.Tests\obj\Debug\netcoreapp3.1\ProjetoPista.Tests.genruntimeconfig.cache
