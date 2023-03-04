@@ -28,7 +28,7 @@ select * from Niveis_dificuldade_Pistas
 --professores
 
 insert into Professores Values
-('Luciano Nascimento','42401201874','13974123900','lucianosgnascimento@gmail.com','@lucianoosouza',5,2,'Tio raposo',120);
+('Luciano Nascimento','42401201874','13974123900','lucianosgnascimento@gmail.com','@lucianoosouza',5,2,'Tio raposo',120,1,1,'raposo');
 
 insert into Pistas_Professores Values
 (1,1);
@@ -41,7 +41,7 @@ update Pistas set fl_cobertura = 0
 select * from Endereco
 delete from Endereco where id_endereco = 10
 
-
+Select * from Pistas
 
 
 

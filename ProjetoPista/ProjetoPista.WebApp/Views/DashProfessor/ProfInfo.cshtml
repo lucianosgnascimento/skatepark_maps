@@ -1,0 +1,61 @@
+﻿@model ProjetoPista.Model.Dtos.ProfessorDto
+@section Scripts
+    {
+
+}
+<style>
+    .thumbnail {
+        width: 124px;
+        height: 124px;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1.5em;
+        border-radius: 100%;
+        box-shadow: unset;
+
+    }
+
+    .profile {
+        padding: 10px;
+    }
+
+    .tituloProf {
+        text-align: center;
+    }
+    .close-button{
+            font-size: 2em;
+    line-height: 1;
+    border: 0;
+    background-color: white;
+    }
+</style>
+
+<div class="info_content">
+    <div class="profile">
+        <div style="text-align:right;">
+            <button class="close-button" id="close_button" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        
+        <div class="">
+            <img src="~/imagensProf/@Model.nm_profile" class="thumbnail">
+        </div>
+
+        <div class="pista-info ">
+            <div class="tituloProf">
+                <h2 class="info_location_name">@Model.nm_professor.Split(" ")[0] (@Model.nm_apelido)</h2>
+            </div>
+            <p class="info_location_text">Professor à <b>@Model.nr_anos_experiencia</b> anos. </p>
+
+            <p class="info_location_call"><span><i class="fa fa-mobile fa-fw" style="color:black"></i></span>@Model.ds_telefone</p>
+            <p class="info_location_call"><span><i class="fa fa-envelope fa-fw" style="color:black"></i></span>@Model.ds_email</p>
+            <p class="info_location_call"><span><i class="fa fa-instagram fa-fw" style="color:black"></i></span>@Model.ds_instagram</p>
+            <p class="info_location_call"><span><i class="fa fa-dollar-sign fa-fw" style="color:black"></i></span>@Model.vl_hora_aula/hora</p>
+            <br />
+            <p class="info_location_call" id="explicaProf">As pistas que estão sendo exibidas são as que o professor @Model.nm_professor.Split(" ")[0] está disponível para dar aulas. <br> Clique nos pins para saber mais sobre a pista.</p>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,1345 @@
+﻿@model IEnumerable<ProjetoPista.Model.Dtos.PistaDto>
+
+@{ ViewData["Title"] = "Painel Administrativo 1.0"; }
+
+<style>
+    ::-webkit-scrollbar-track {
+        background-color: #F4F4F4;
+    }
+
+    ::-webkit-scrollbar {
+        width: 6px;
+        background: #F4F4F4;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #dad7d7;
+    }
+
+    .form-group {
+        margin-bottom: -1rem;
+    }
+
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+
+    }
+
+
+    input-group {
+        padding-bottom: 3px;
+    }
+    .select {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        width: 250px;
+        height: 40px;
+    }
+    .btn {
+        border-radius: 0.15rem;
+        font-family: Roboto,Arial,sans-serif;
+    }
+    .btn-primary {
+        background-color: #9D1B2C;
+        border-color: #9D1B2C;
+        margin-right: 4px;
+    }
+        .btn-primary:disabled {
+            color: #fff;
+            background-color: #9D1B2C;
+            border-color: #9D1B2C;
+        }
+
+        .btn-primary:hover {
+            color: #fff;
+            background-color: #721c24;
+            border-color: #721c24;
+        }
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        border-top-left-radius: 0.15rem;
+        border-top-right-radius: 0.15rem;
+        border-bottom: 0px solid #dee2e6;
+        padding: 0.5rem;
+        background-color: #8d0000;
+    }
+
+    .modal-body {
+        position: relative;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        padding: 0.5rem;
+        background-color: #ededee;
+    }
+    .modal-footer {
+        padding: 0.5rem;
+        background-color: #d4d4d4;
+    }
+
+    h1, h2, h3, h4 {
+        letter-spacing: 0px;
+        font-weight: 500;
+        color: #f8f9fa;
+        margin: 0px 0px 0px 0px;
+        font-family: Roboto,Arial,sans-serif;
+    }
+
+    h1 {
+        font-size: 40px;
+        line-height: 52px;
+    }
+
+    h2 {
+        font-size: 32px;
+        line-height: 42px;
+    }
+
+    h3 {
+        font-size: 24px;
+        line-height: 34px;
+    }
+
+    h4 {
+        font-size: 22px;
+        line-height: 32px;
+    }
+
+    h5 {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    h6 {
+        font-size: 16px;
+        line-height: 18px;
+    }
+
+    p {
+        margin: 0 0 5px;
+        line-height: 1.7;
+        font-family: Roboto,Arial,sans-serif;
+    }
+
+        p:last-child {
+            margin: 0px;
+        }
+
+    span {
+        font-family: Roboto,Arial,sans-serif;
+    }
+    ul, ol {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+
+    a:focus, a:hover {
+        text-decoration: none;
+        color: #023981;
+    }
+
+    .btn-link {
+        color: #304496;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+        position: relative;
+        letter-spacing: 0px;
+        border-bottom: 1px solid #304496;
+    }
+    .btn:focus, .btn.focus {
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem #cbd2d9;
+    }
+
+    .btn:hover {
+        color: #cbd2d9;
+        text-decoration: none;
+    }
+        .btn-link:hover {
+            color: #263679;
+            text-decoration: none;
+            border-bottom: 1px solid #263679;
+        }
+    .btn-mapa {
+        z-index:1;
+        width: 40px;
+        position: absolute;
+        -webkit-transform: translate(-12 px,-12 px );
+        transform: translate(-12 px,-12 px );
+        bottom: 300px;
+        right: 30px;
+        border-radius: 0.15rem;
+    }
+    .btn-mapa-nearme {
+        width: 40px;
+        height: 40px;
+        right: 10px;
+        top: 10px;
+        background-color: #9D1B2C;
+        color: white;
+    }
+    .btn-mapa-pesquisa {
+        width: 40px;
+        height: 40px;
+        right: 10px;
+        top: 60px;
+        background-color: #9D1B2C;
+        color: white;
+    }
+    .btn-mapa-cadastro {
+        width: 40px;
+        height: 40px;
+        right: 10px;
+        top: 110px;
+        background-color: #9D1B2C;
+        color: white;
+    }
+    .base-btn-mapa {
+        width: 60px;
+        position: absolute;
+        -webkit-transform: translate(-12 px,-12 px );
+        transform: translate(-12 px,-12 px );
+        top: calc(50% - 80px);
+        right: 10px;
+        height: 160px;
+        background-color: #EDEDEE;
+        border-radius: 0.15rem;
+        transition: margin-right .5s;
+    }
+    .btn-sidebar-control {
+        width: 20px;
+        position: absolute;
+        -webkit-transform: translate(-12 px,-12 px );
+        transform: translate(-12 px,-12 px );
+        top: calc(50% - 20px);
+        left: 0px;
+        height: 40px;
+        background-color: #EDEDEE;
+        border-radius: 0 0.15rem 0.15rem 0;
+        transition: margin-left .5s;
+    }
+    .btn-sidebar-control {
+        width: 20px;
+        position: absolute;
+        left: 0px;
+        border: 0;
+        height: 40px;
+        background-color: #EDEDEE;
+        border-radius: 0 0.15rem 0.15rem 0;
+        transition: margin-left .5s;
+
+    }
+    #map_wrapper {
+        z-index: -1;
+        position: absolute;
+        height: calc(100% - 40px);
+        width: 100%;
+        padding: 0px;
+        border-width: 0px;
+        margin-top: 40px;
+        left: 0px;
+        top: 0px;
+        /*transition: margin-left 0.5s;*/
+    }
+    #map_canvas {
+        width: 100%;
+        height: 100%;
+    }
+
+    .location-block {
+        margin-bottom: 20px;
+    }
+
+    .location-content {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .location-head {
+        margin-bottom: 20px;
+    }
+
+    .location-icon {
+        font-size: 18px;
+        color: #023981;
+        padding-right: 6px;
+    }
+
+    .location-title {
+        font-weight: 600;
+        color: #023981;
+        font-size: 18px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .info_content {
+        background-color: #fff;
+        padding: 0px;
+    }
+    .info_location_title {
+        color: #66000d;
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .info_location_name {
+        color: #4c0008;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .info_location_text {
+        margin-bottom: 5px;
+        color: #2e3133;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 30px;
+    }
+
+    .info_location_call {
+        font-size: 16px;
+        color: #2e3133;
+        font-weight: 600;
+    }
+
+    .info_location_call span {
+        padding-right: 8px;
+        font-size: 16x;
+        color: #023981;
+
+    }
+
+    .mt30 {
+        margin-top: 20px;
+    }
+    .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+        color: #fff;
+        background-color: #9d1b2c;
+        border-color: #ededee;
+    }
+    .btn:focus, .btn.focus {
+        /* outline: 0; */
+        box-shadow: 0 0 0 0.2rem #ffffff;
+    }
+    .btn-filt {
+        color: #fff;
+        background-color: rgb(47 53 58);
+        border-color: #6c757d;
+    }
+
+    .btn-near {
+        color: #fff;
+        background-color: #b50011;
+        border-color: #360005;
+    }
+
+    .rowFilt {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+
+    .container-fluid-map {
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        height: 100%;
+        background-color: white;
+
+    }
+
+    .container-fluid {
+        background-color: #ededed;
+        padding-bottom: 5vh;
+    }
+
+    .carousel {
+        margin-bottom: 0rem;
+    }
+
+    /* Já que usamos posicionamento de imagens, precisaremos fazer alguns ajustes na legenda */
+    .carousel-caption {
+        bottom: 3rem;
+        z-index: 10;
+    }
+
+    /* Declaramos alturas, devido ao posicionamento do elemento img */
+    .carousel-item {
+        height: 15rem;
+        background-color: #201414;
+        /*transition: 10s ease-in-out left;*/
+    }
+
+        .carousel-item > img {
+            position: absolute;
+            min-width: 100%;
+            height: 15rem;
+        }
+    @*
+    .spot-feature {
+        display: block;
+        float: left;
+        text-align: left;
+        padding: 10px 5px 10px;
+        opacity: .6;
+        width:219px;
+        background-color: #fff;
+        border-radius: 0.15vh;
+        margin: 0 0 5px 5px;
+        -webkit-transition: opacity .3s;
+        transition: opacity .3s;
+        border: 1px solid #ddd;
+    }
+        *@
+    .spot-feature {
+        /*display: block;
+            float: left;*/
+        text-align: left;
+        padding: 5%;
+        opacity: .8;
+        /*width: 367px;*/
+        background-color: #fff;
+        border-radius: 0.15vh;
+        margin: 0 -15px 0 -15px;
+        -webkit-transition: opacity .3s;
+        transition: opacity .3s;
+        border-bottom: 1px solid #ddd;
+    }
+    .form-control:focus {
+        color: #495057;
+        background-color: #ededed;
+        border-color: hsl(11deg 80% 45%);
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgb(255 24 0 / 25%);
+    }
+    .modalidade-icons {
+        box-sizing: border-box;
+        width: 33.33%;
+        float: left;
+        margin-top: 0px;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .modalidade-image {
+        width: 80px;
+        height: 70px;
+    }
+
+    .modalidade-text {
+        display: block;
+        margin-top: 2px;
+    }
+
+    .modalidades-place {
+        padding: 0 0 10px;
+        margin-top: 0px;
+        border-top: 1px solid #fff;
+        display: inline-block;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    .sidebar {
+        float: right;
+        height: calc(100% - 40px); /* 100% Full-height */
+        width: 0; /* 0 width - change this with JavaScript */
+        position: fixed; /* Stay in place */
+        margin-top: 40px;
+        /*z-index: 1;  Stay on top */
+        top: 0;
+        left: 0;
+        background-color: #fff; /* Black*/
+        overflow-x: hidden; /* Disable horizontal scroll */
+        /*padding-top: 60px;  Place content 60px from the top */
+        transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+    }
+    .right-sidebar {
+        float: left;
+        height: calc(100% - 88px); /* 100% Full-height */
+        width: 0; /* 0 width - change this with JavaScript */
+        position: fixed; /* Stay in place */
+        margin-top: 40px;
+        /*z-index: 1;  Stay on top */
+        top: 0;
+        right: 0;
+        background-color: #fff; /* Black*/
+        overflow-x: hidden; /* Disable horizontal scroll */
+        /*padding-top: 60px;  Place content 60px from the top */
+        transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+    }
+    .submit-sidebar {
+        float: left;
+        height: 48px; /* 100% Full-height */
+        width: 0; /* 0 width - change this with JavaScript */
+        position: fixed; /* Stay in place */
+        /*z-index: 1;  Stay on top */
+        right: 0px;
+        background-color: #fff; /* Black*/
+        overflow-x: hidden; /* Disable horizontal scroll */
+        /*padding-top: 60px;  Place content 60px from the top */
+        transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+        bottom: 0;
+    }
+    .pista-info {
+        padding: 10px;
+    }
+    .sidebar-control > i{
+        position: relative;
+        top: calc(50% - 12.5px);
+        left: 5px;/* 50% - 3/4 of icon height */
+    }
+    button:focus {
+        outline: 0px dotted;
+        outline: 0px auto -webkit-focus-ring-color;
+    }
+
+    /*//////////////////////////////////////////////////////////////*/
+    input[type = "checkbox"][id ^= "myCheckbox"] {
+        display: none;
+    }
+
+    .spot-type label {
+        border: 1px solid #fff;
+        padding: 10px;
+        /*display: block;*/
+        position: relative;
+        margin: 10px;
+        cursor: pointer;
+    }
+
+    label:before {
+        background-color: white;
+        color: white;
+        content: " ";
+        display: block;
+        border-radius: 3%;
+        border: 0px solid grey;
+        position: absolute;
+        /*top: -5px;
+        left: -5px;*/
+        top: 6px;
+        left: 6px;
+        width: 25px;
+        height: 25px;
+        text-align: center;
+        /*line-height: 28px;*/
+        transition-duration: 0.4s;
+        transform: scale(0);
+        z-index: 2;
+    }
+
+    .line label img {
+        height: 45px;
+        width: 45px;
+        transition-duration: 0.2s;
+        transform-origin: 50% 50%;
+    }
+
+    .five label img {
+        height: 100px;
+        width: 100px;
+        transition-duration: 0.2s;
+        transform-origin: 50% 50%;
+    }
+
+    :checked + label {
+        border-color: #9D1B2C;
+    }
+
+        :checked + label:before {
+            content: "✓";
+            background-color: #9D1B2C;
+            transform: scale(1);
+        }
+
+        :checked + label img {
+            transform: scale(0.9);
+            /* box-shadow: 0 0 5px #333; */
+            z-index: -1;
+        }
+
+    .spot-type {
+        display: block;
+        position: relative;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        min-height: 90px;
+        padding: 10px 5px 10px;
+        /*opacity: .4;
+        float: left;
+        text-align: center;
+
+        */
+        cursor: pointer;
+        border: 0px solid transparent;
+        border-radius: 3px;
+        -webkit-transition: opacity .3s;
+        transition: opacity .3s;
+    }
+
+    .line {
+        width: 19%;
+    }
+
+    .five {
+        width: 33%;
+    }
+
+    .spot-type-dummy {
+        display: block;
+        position: relative;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 16.5%;
+        min-height: 90px;
+        float: left;
+        text-align: center;
+        /*opacity: .4;*/
+        cursor: pointer;
+        -webkit-transition: opacity .3s;
+        transition: opacity .3s;
+    }
+
+    .spot-type span {
+        display: block;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 14px;
+    }
+
+    .spot-type img {
+        margin-bottom: 5px;
+        width: 55px;
+    }
+
+    .foto-professor {
+        height: 45px;
+        width: 45px;
+        background-size: cover;
+        background-image: url(//maps.gstatic.com/tactile/omnibox/anonymous_v3.png);
+        background-position: center;
+        border-radius: 3%;
+        position: absolute;
+
+    }
+
+    .avatar {
+        vertical-align: middle;
+        width: 50px;
+        height: 50px;
+        border-radius: 30%;
+        text-align:center;
+    }
+    .avatar-plus {
+        width: 50px;
+        height: 50px;
+        background-color: #999999;
+        color: white;
+        display: inline-block;
+        padding-top: 3%;
+    }
+    .endereco {
+        width: 100%;
+        display: inline-block;
+    }
+    .enderecoTexto {
+        width: 80%;
+        float: left;
+        display: inline-block;
+        /* position: relative;*/
+
+    }
+    .copyEndereco {
+        width: 20%;
+        /* float: left; */
+        display: inline-block;
+        position: relative;
+        text-align: center;
+        margin-top: 18px;
+        cursor:pointer;
+
+    }
+    .copyEndereco:hover > .endereco{
+        background-color :darkgray;
+
+    }
+    .tooltip {
+        position: relative;
+        display: inline-block;
+    }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 140px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 150%;
+            left: 50%;
+            margin-left: -75px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+            .tooltip .tooltiptext::after {
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: #555 transparent transparent transparent;
+            }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+
+        /*SIDEBAR PROFESSOR*/
+    .thumbnail {
+        width: 124px;
+        height: 124px;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1.5em;
+        border-radius: 100%;
+        box-shadow: unset;
+    }
+    .profile{
+        padding: 10px;
+    }
+    .tituloProf{
+        text-align:center;
+    }
+
+    .callActionPins {
+        text-align: center;
+        top: 45%;
+        POSITION: absolute;
+    }
+
+
+</style>
+@section Scripts
+    {
+    <script src="~/js/Aprovacoes/SalvarPista.js" asp-append-version="true"></script>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("map_wrapper").style.marginLeft = "250px";
+
+        }
+
+        /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("map_wrapper").style.marginLeft = "0";
+        }
+        function openFilt() {
+            document.getElementById("mySidebar2").style.width = "250px";
+            document.getElementById("map_wrapper").style.marginRight = "250px";
+
+        }
+
+        /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+        function closeFilt() {
+            document.getElementById("mySidebar2").style.width = "0";
+            document.getElementById("map_wrapper").style.marginRight = "0";
+        }
+
+        $(function () {
+            $('.copyEndereco').hover(function () {
+                $('.endereco').css('background-color', '#dfdddd');
+            }, function () {
+                // on mouseout, reset the background colour
+                $('.endereco').css('background-color', '');
+            });
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('body').on('click', '.modal-link', function (e) {
+                e.preventDefault();
+                $("#modal-container").remove();
+                $.get($(this).data("targeturl"), function (data) {
+                    $('<div id="modal-container" class="modal fade">  <div class="modal-dialog modal-lg" style="width:500px;>' +
+                        '<div class="modal-content" id= "modalbody" >' +
+                        data +
+                        '</div></div></div>').modal();
+                });
+            });
+        });
+
+        jQuery(function ($) {
+            // Asynchronously Load the map API
+            var script = document.createElement('script');
+            script.src = "https://maps.googleapis.com/maps/api/js?key=&callback=initialize";
+            document.body.appendChild(script);
+        });
+
+        function initialize() {
+            var map;
+            var bounds = new google.maps.LatLngBounds();
+            var mapOptions = {
+                mapTypeId: 'roadmap'
+            };
+
+            // Display a map on the page
+            map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+            map.setTilt(45);
+
+
+
+            // Multiple Markers
+
+            var markers = [
+
+
+                @foreach (var item in Model)
+            {
+                <text>['@item.nm_pista.ToString()', @item.nr_latitude.ToString().Replace(",","."), @item.nr_longitude.ToString().Replace(",", ".")],</text>
+            }
+
+                //['Local 3', -23.630355817243128, -46.65799790278],
+                //['Local 4', -23.667613848877686, -46.6719587940728]
+
+            ];
+            var infoContent = ' < div class="info_content" > ' +
+            '<h3 class="info_location_name">Local 2</h3>' +
+                '<p class="info_location_text">Endereço 1</p>' +
+                '<p class="info_location_call"><span><i class="fa fa-phone"></i></span>(800) 123-1314</p>' +
+                '<a href="#" class="btn-link">Saiba mais</a>' +
+                '</div>';
+            // Info Window Content
+            var infoWindowContent = [
+                @foreach (var item in Model)
+                {
+                    <text>['<div class="info_content"> <img class="card-img-toptext-center w-100" src="~/imagensPistas/@item.nm_imagens[0]" alt="Card image cap"> <h3 class="info_location_name">@item.nm_pista.ToString()</h3> <p class="info_location_text">@item.ds_horario_funcionamento.ToString()</p> <div class="col-md-12 text-center"> <button type="button" class="btn btn-primary" name="Mais" value="@item.id_pista">Saber mais</button> <button type="button" class="btn btn-secondary" value="@item.id_pista"><i class="fa fa-arrow-up"></i> Ir </button></div></div>'],</text>
+                }                 
+
+                /*modal com iamgens atigo < text > ['<div class="info_content"> <img class="card-img-toptext-center w-100" src="~/files/CapaCadastroPista.jpg" alt="Card image cap"> <h3 class="info_location_name">item.nm_pista.ToString()</h3 > <p class="info_location_text">item.ds_horario_funcionamento.ToString()</p> <div class="modalidades-place"> Html.Raw(img1) Html.Raw(img2)  Html.Raw(img3) </div> <div class="col-md-12 text-center"> <button type="button" class="btn btn-primary" name="Mais" value="item.id_pista">Saber mais</button> <button type="button" class="btn btn-secondary" value="item.id_pista"><i class="fa fa-arrow-up"></i> Ir </button></div></div > '],</text >
+                */
+
+
+                /*['<div class="info_content">' +
+                    '<h3 class="info_location_name">Local 2</h3>' +
+                    '<p class="info_location_text">Endereço 1</p>' +
+                    '<p class="info_location_call"><span><i class="fa fa-phone"></i></span>(800) 123-1314</p>' +
+                    '<a href="#" class="btn-link">Saiba mais</a>' +
+
+
+                    '</div>'
+                ],
+                ['<div class="info_content">' +
+                    '<h3 class="info_location_name">Local 3</h3>' +
+                    '<p class="info_location_text">Endereço 1</p>' +
+                    '<p class="info_location_call"><span><i class="fa fa-phone"></i></span>(800) 123-1112</p>' +
+                    '<a href="#" class="btn-link">Saiba mais</a>' +
+
+
+                    '</div>'
+                ],
+                ['<div class="info_content">' +
+                    '<h3 class="info_location_name">Local 4</h3>' +
+                    '<p class="info_location_text">Endereço 1</p>' +
+                    '<p class="info_location_call"><span><i class="fa fa-phone"></i></span>(800) 123-8910</p>' +
+                    '<a href="#" class="btn-link">Saiba mais</a>' +
+
+
+                    '</div>'
+                ]*/
+            ];
+            // Display multiple markers on a map
+            var infoWindow = new google.maps.InfoWindow({ maxWidth: 280 }),
+                marker, i;
+
+            // Loop through our array of markers & place each one on the map
+            for (i = 0; i < markers.length; i++) {
+                var position = new google.maps.LatLng(markers[i][1],
+                    markers[i][2], markers[i][3], markers[i][4]);
+                bounds.extend(position);
+                marker = new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    title: markers[i][0]
+                });
+
+                // Allow each marker to have an info window
+                google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
+                    return function () {
+                        infoWindow.setContent(infoWindowContent[i][0]);
+                        infoWindow.open(map, marker);
+                    }
+                })(marker, i));
+
+                // Automatically center the map fitting all markers on the screen
+                map.fitBounds(bounds);
+            }
+
+            // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+            var tilesloadedListener = google.maps.event.addListener((map), 'tilesloaded', function (event) {
+                if (@Model.Count() == 1) {
+                    this.setZoom(16);
+                }
+                //
+                google.maps.event.removeListener(tilesloadedListener);
+            });
+
+        }
+        $(document).scroll(function () {
+            localStorage['page'] = document.URL;
+            localStorage['scrollTop'] = $(document).scrollTop();
+        });
+        $(document).ready(function () {
+            if (localStorage['page'] == document.URL) {
+                $(document).scrollTop(localStorage['scrollTop']);
+            }
+        });
+    </script>
+}
+
+@*
+        <div class="container-fluid" style="padding-top:3px">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    @*<li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="first-slide" src="#" alt="First slide">
+            <div class="container">
+                <div class="carousel-caption col-md-5 p-lg-5 mx-auto my-5">
+                    <h1>Busque suas Pistas</h1>
+                    <p>Encontre as pistas mais pertos de você, do jeitinho que quiser.</p>
+                    <p><a class="btn btn-md btn-near" href="#buscaMapa" role="button">Procure já</a></p>
+                </div>
+            </div>
+        </div>
+
+            <div class="carousel-item">
+                <img class="second-slide" src="~/files/capa4.png" alt="Second slide">
+                <div class="container">
+                    <div class="carousel-caption col-md-5 p-lg-5 mx-auto my-5">
+                        <h1>Outra manchete</h1>
+                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        <p><a class="btn btn-md btn-primary" href="#" role="button">Learn more</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="third-slide" src="~/files/capa4.png" alt="Third slide">
+                <div class="container">
+                    <div class="carousel-caption text-right">
+                        <h1>Outra manchete, pra garantir</h1>
+                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Voltar</span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Avançar</span>
+            </a>
+    </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="background-image: linear-gradient(#ededed, white); ">
+    </div>*@
+
+<div id="mySidebarInfos" class="sidebar">
+    <div class="info_content">
+        <h2 class="info_location_name" id="codP" hidden>@ViewBag.PistaModel</h2>
+
+        <div class="callActionPins">
+            <p>Clique nos pins à direita para ver mais informações sobre as pistas.</p>
+        </div>
+        @*
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="first-slide" src="~/files/CapaCadastroPista.jpg" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="slide" src="~/files/2mod.png" alt="slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="third-slide" src="~/files/CapaProfessor.jpg" alt="slide">
+                </div>
+                <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Voltar</span>
+                </a>
+                <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Avançar</span>
+                </a>
+            </div>
+        </div>
+
+
+        @*<img class="card-img-toptext-center w-100" src="~/files/CapaCadastroPista.jpg" alt="Card image cap">
+        <div class="pista-info ">
+            <h2 class="info_location_name">Nome Pista</h2>
+            <h2 class="info_location_name" id="codP" hidden>@ViewBag.PistaModel</h2>
+            <p class="info_location_text">Pista de dificuldade <b>Fácil</b> </p>
+            <div class=" endereco">
+                <div class="enderecoTexto">
+                    <p class="info_location_call" id="enderecoPista"><span><i class="fa fa-map-marked-alt"></i></span>Rua Legalizada 150, Centro - Campinas SP cep</p>
+                </div>
+                <div class="copyEndereco">
+                    <i class="fa fa-copy"></i>
+                </div>
+            </div>
+            <div class="mr-12 spot-feature">
+                <h3 class="info_location_name">Modalidades</h3>
+                <div class="form-group row">
+
+                    <div class="spot-type line">
+
+                        <input type="checkbox" id="myCheckbox7" />
+                        <label for="myCheckbox7">
+                            <img src="http://www.thebusinessofsports.com/wp-content/uploads/2010/10/facebook-icon-200x200.png" />
+                            <span>Street</span>
+
+                        </label>
+                    </div>
+                    <div class="spot-type line">
+                        <input type="checkbox" id="myCheckbox8" />
+                        <label for="myCheckbox8">
+                            <img src="http://tech21info.com/admin/wp-content/uploads/2013/03/chrome-logo-200x200.png" />
+                            <span>Street</span>
+                        </label>
+                    </div>
+                    <div class="spot-type line">
+                        <input type="checkbox" id="myCheckbox9" />
+                        <label for="myCheckbox9">
+                            <img src="http://tech21info.com/admin/wp-content/uploads/2013/03/chrome-logo-200x200.png" />
+                            <span>Street</span>
+                        </label>
+                    </div>
+                    <div class="spot-type line">
+                        <input type="checkbox" id="myCheckbox9" />
+                        <label for="myCheckbox9">
+                            <img src="http://tech21info.com/admin/wp-content/uploads/2013/03/chrome-logo-200x200.png" />
+                            <span>Street</span>
+                        </label>
+                    </div>
+
+                    <div class="spot-type line">
+                        <input type="checkbox" id="myCheckbox9" />
+                        <label for="myCheckbox9">
+                            <img src="http://tech21info.com/admin/wp-content/uploads/2013/03/chrome-logo-200x200.png" />
+                            <span>Street</span>
+                        </label>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="mr-12 spot-feature">
+                <h3 class="info_location_name">Professores</h3>
+
+                <div class="spot-type">
+                    <a name="Professor" value="1"><img src="~/imagensProf/eu.jpg" alt="Avatar" class="avatar"></a>
+                    <a name="Professor" value="1"><img src="~/imagensProf/eu.jpg" alt="Avatar" class="avatar" name="Professor" title="2"></a>
+                    <a name="Professor" value="1"><img src="~/imagensProf/eu.jpg" alt="Avatar" class="avatar" name="Professor" value="3"></a>
+                    <a name="Professor" value="1"><img src="~/imagensProf/eu.jpg" alt="Avatar" class="avatar" name="Professor" value="4"></a>
+                    <a class="avatar  avatar-plus"> <i class="fas fa-plus"></i> </a>
+                </div>
+
+
+            </div>
+            <div class="mr-12 spot-feature">
+                <h3 class="info_location_name">Tags</h3>
+
+            </div>
+
+            <a href="#" class="btn-link">Saiba mais</a>
+
+        </div>*@
+    </div>
+</div>
+
+<div id="mySidebarFiltro" class="right-sidebar">
+    <div id="ProfessorProfile" hidden>
+        <h2 class="info_location_name" id="codPro" hidden>@ViewBag.ProfessorModel</h2>
+
+        <div class="profile">
+            <img src="https://images.unsplash.com/photo-1484186139897-d5fc6b908812?ixlib=rb-0.3.5&s=9358d797b2e1370884aa51b0ab94f706&auto=format&fit=crop&w=200&q=80%20500w" class="thumbnail">
+            <div class="pista-info ">
+                <div class="tituloProf">
+                    <h2 class="info_location_name">Nome Professor (Apelido)</h2>
+                </div>
+                <p class="info_location_text">Professor à <b>5</b> anos. </p>
+
+                <p class="info_location_call"><span><i class="fa-solid fa-mobile"></i></span> 13 0900909009</p>
+                <p class="info_location_call"><span><i class="fa-regular fa-envelope"></i></span> luciano@gmail.com</p>
+                <p class="info_location_call"><span><i class="fa-brands fa-instagram"></i></span> @@Luciano</p>
+                <p class="info_location_call"><span><i class="fa-solid fa-dollar-sign"></i></span> 120/hora</p>
+                <br />
+                <p class="info_location_call">As pistas que estão sendo exibidas são as que oprofessor x está disponível para dar aulas.</p>
+                <p class="info_location_call">Clique nos pins para saber mais sobre a pista.</p>
+            </div>
+
+        </div>
+    </div>
+
+    
+        <div class="info_content" id="FiltrosViz" >
+            <form id="frm-pistas" asp-controller="Home" asp-action="FiltrarPista" method="post" enctype="multipart/form-data">
+                <div class="pista-info">
+                    <div class="text-center">
+                        <h4 style="color: #141301" class=" p-2">Escolha as combinações de filtros desejados</h4>
+                    </div>
+
+
+                    <div class="mr-12 spot-feature">
+                        <h4 class="info_location_name">Nome da Pista</h4>
+                        <input name="nm_pista" type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon">
+                    </div>
+
+                    <div class="mr-12 spot-feature">
+                        <h4 class="info_location_name">Estado</h4>
+                        @Html.DropDownListFor(C => C, new SelectList(ViewBag.Estado, "Value", "Text"), "Selecione um estado", new { id = "estadoCombo", @class = "form-control", name = "id_estado" })
+                    </div>
+                    <div class="mr-12 spot-feature">
+                        <h4 class="info_location_name">Cidade</h4>
+                        @Html.DropDownListFor(C => C, new SelectList(ViewBag.Cidade, "Value", "Text"), "Selecione um município", new { id = "cidadeCombo", @class = "form-control", name = "id_cidade" })
+
+                    </div>
+
+                    <div class="mr-12 spot-feature">
+                        <h4 class="info_location_name">Modalidades</h4>
+                        <div class="form-group row">
+
+                            <div class="spot-type line">
+
+                                <input type="checkbox" id="myCheckbox10" />
+                                <label for="myCheckbox10">
+                                    <img src="~/files/1099640.png" />
+                                    <span>Street</span>
+
+                                </label>
+                            </div>
+                            <div class="spot-type line">
+                                <input type="checkbox" id="myCheckbox20" />
+                                <label for="myCheckbox20">
+                                    <img src="~/files/1099640.png" />
+                                    <span>Vert</span>
+                                </label>
+                            </div>
+                            <div class="spot-type line">
+                                <input type="checkbox" id="myCheckbox30" />
+                                <label for="myCheckbox30">
+                                    <img src="~/files/1099640.png" />
+                                    <span>Plaza</span>
+                                </label>
+                            </div>
+                            <div class="spot-type line">
+                                <input type="checkbox" id="myCheckbox40" />
+                                <label for="myCheckbox40">
+                                    <img src="~/files/1099640.png" />
+                                    <span>Half</span>
+                                </label>
+                            </div>
+
+                            <div class="spot-type line">
+                                <input type="checkbox" id="myCheckbox50" />
+                                <label for="myCheckbox50">
+                                    <img src="~/files/1099640.png" />
+                                    <span>Hill</span>
+                                </label>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="mr-12 spot-feature">
+                        <h4 class="info_location_name">Dificuldades</h4>
+                        <div class="form-group row">
+
+                            <div class="spot-type line">
+
+                                <input type="checkbox" id="myCheckbox60" />
+                                <label for="myCheckbox60">
+                                    <img src="~/files/1099640.png" />
+                                    <span>Facil</span>
+
+                                </label>
+                            </div>
+                            <div class="spot-type line">
+                                <input type="checkbox" id="myCheckbox70" />
+                                <label for="myCheckbox70">
+                                    <img src="~/files/1099640.png" />
+                                    <span>Médio</span>
+                                </label>
+                            </div>
+                            <div class="spot-type line">
+                                <input type="checkbox" id="myCheckbox80" />
+                                <label for="myCheckbox80">
+                                    <img src="~/files/1099640.png" />
+                                    <span>Dificil</span>
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    @*
+                <div class="mr-12 spot-feature">
+                    <label>Cep</label>
+                    <input name="cd_cep" type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon">
+                </div>
+
+        <div class="btn-group mr-12" role="group" aria-label="First group">
+            <button type="submit" style="float: left;" class="btn btn-secondary" id="btn-filtrar">Filtrar</button>
+        </div>*********@              
+                </div>
+
+
+
+                </form>
+            </div>
+            
+        </div>
+<div id="mySidebar3" class="submit-sidebar">
+    <div class="info_content" style=" float: right">
+        <button style="margin: 5px;" class="btn btn-primary" id="btn-limpar" method="post">Limpar Filtros</button>
+
+        <button style="margin: 5px;" type="submit" class="btn btn-primary" id="btn-filtrar" form="frm-pista">Filtrar</button>
+    </div>
+</div>
+
+
+<div class="container-fluid-map" id="expandeRecolhe">
+    <div class="sidebar-control" style="vertical-align:central;" id="controle_sidebar">
+        <button style="" class="btn-sidebar-control" id="btn-expandir-recolher" title="Expandir"><i class="fas fa-angle-right"></i></button>
+        @*<button class="btn btn-mapa btn-mapa-report" id="btn-filtro" title="Reportar problema" data-target="#modalFiltro" data-toggle="modal"><i class="fas fa-exclamation"></i></button>*@
+    </div>
+
+</div>
+
+
+<div class="container-fluid-map">
+    <div class="base-btn-mapa" id="floatMenu">
+        <button class="btn btn-mapa btn-mapa-nearme" id="btn-NearMe" title="Perto de mim"><i class="fas fa-map-marker-alt"></i></button>
+        <button class="btn btn-mapa btn-mapa-pesquisa" id="btn-filtro" title="Buscar Pista"><i class="fas fa-search-location"></i></button>
+        <a class="btn btn-mapa btn-mapa-cadastro" id="btn-cadastro" title="Adicionar Pista" href="/Aprovacoes/NovoNovo"><i class="fas fa-plus"></i></a>
+        @*<button class="btn btn-mapa btn-mapa-report" id="btn-filtro" title="Reportar problema" data-target="#modalFiltro" data-toggle="modal"><i class="fas fa-exclamation"></i></button>
+            <button class="btn btn-mapa btn-mapa-cadastro" id="btn-cadastro" title="Adicionar Pista" data-target="#modalFiltro" data-toggle="modal"><i class="fas fa-plus"></i></button>*@
+    </div>
+
+</div>
+<div class="container-fluid-map">
+    @*
+                <h3 style="color: black; align-content: center; text-align: center; padding: 2vh; font-size: xx-large;">Mapa de Pistas</h3>
+                <div class="rowFilt" id="buscaMapa">
+                    <div class="col-sm-6 pl-1 pr-0">
+                        <h3 style="color:black">  </h3>
+                    </div>
+                    <div class="col-sm-3 pl-1 pr-0">
+                        <button class="btn btn-near btn-block" id="btn-NearMe">Perto de mim</button>
+                    </div>
+                    <div class="col-sm-3 pl-1 pr-0">
+                        <button class="btn btn-filt btn-block" id="btn-filtro" data-target="#modalFiltro" data-toggle="modal">Filtrar</button>
+                    </div>
+
+                </div>
+
+
+            @if (!string.IsNullOrEmpty(ViewBag.Nenhum))
+            {
+        <text>
+            <span class="text-danger">@ViewBag.Nenhum</span>
+        </text>}*@
+
+
+
+    <div id="map_wrapper">
+        <div id="map_canvas" class="mapping"></div>
+
+    </div>
+    @*
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  text-center mt20">
+                    Desenvolvido para os <a href="https://www.youtube.com/watch?v=TIy3n2b7V9k" target="_blank">Sk8ers</a>
+                </div>
+            </div>
+        </div>
+
+        <div align="left">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234567890123456" crossorigin="anonymous"></script>
+            <!-- Homepage Leaderboard -->
+            <ins class="adsbygoogle"
+                    style="display:inline-block;width:300px;height:300px"
+                    data-ad-client="ca-pub-1234567890123456"
+                    data-ad-slot="1234567890"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    *@
+
+    <!-- Modal -->
+    @*
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-lg">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Cabeçalho Modal</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                            </div>
+                            <div class="modal-body">
+                                <p>Macoratti .net - Quase tudo para .NET</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+
+                    </div>
+        </div>*@
+</div>

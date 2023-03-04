@@ -4,7 +4,7 @@ insert into Tamanhos Values('Pequena'),
 ('Média'),
 ('Grande')
 
-insert into Modalidades Values('Bowl/Banks','Piscina com ou sem entradas mais leves, para mandar manobras da categoria Vertical como aereos e manobras deslizando nas bordas.'),
+insert into Modalidades Values('Bowl','Piscina com ou sem entradas mais leves, para mandar manobras da categoria Vertical como aereos e manobras deslizando nas bordas.'),
 ('Street','Manobras em obstáculos que são encontrados nas ruas como pequenas rampas, corrimãos, muretas, escadas e afins.'),
 ('HalfPipe','Pista com no mínimo 3,5 metros de altura em formato de U.'),
 ('Mini-Ramp','Similar Aos HalfPipes em formato de U porem de altura bem reduzida.'),
@@ -22,11 +22,14 @@ insert into Niveis_dificuldade Values
 ('Dificil','Pista com obstáculos para quem está em um nível maior, com obstáculos altos que necessitam de habilidade e confiança.'),
 ('Pro','Nijah é você ? Pista alta para quem já é pró no skate.');
 
+use BasePistas
 INSERT INTO Usuario (Nome, Login, Senha) VALUES ('Administrador', 'admin', '123456')
 
 select * from Tamanhos;
-select * from Modalidades;
+select * from Modalidades_pistas;
 select * from Status_aprovacao;
 select * from Niveis_dificuldade;
 
+
+update Modalidades set nm_modalidade = 'Bowl' where id_modalidade = 1
 --truncate table Niveis_dificuldade

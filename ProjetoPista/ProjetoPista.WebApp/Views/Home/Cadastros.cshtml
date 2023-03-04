@@ -1,0 +1,225 @@
+﻿@{ ViewData["Title"] = "Painel Administrativo 1.0"; }
+
+@section Scripts
+{
+    @*<script src="~/js/Aprovacoes/SalvarPista.js" asp-append-version="true"></script>
+        <script>
+                function reply_click(clicked_id) {
+                    alert(clicked_id);
+                }
+            </script>
+    *@
+
+}
+
+
+<style>
+    .sidebar {
+        float: right;
+        height: calc(100% - 40px); /* 100% Full-height */
+        width: 0; /* 0 width - change this with JavaScript */
+        position: fixed; /* Stay in place */
+        margin-top: 40px;
+        z-index: 1; /* Stay on top */
+        top: 0;
+        left: 0;
+        background-color: #111; /* Black*/
+        overflow-x: hidden; /* Disable horizontal scroll */
+        padding-top: 60px; /* Place content 60px from the top */
+        transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+    }
+    h1, h2, h3, h4, h5 {
+        font-family: Roboto,Arial,sans-serif;
+    }
+
+    p {
+        font-family: Roboto,Arial,sans-serif;
+    }
+
+    .btn {
+        border-radius: 0.15rem;
+        font-family: Roboto,Arial,sans-serif;
+    }
+    .btn-primary {
+        background-color: #9D1B2C;
+        border-color: #9D1B2C;
+    }
+
+        .btn-primary:hover {
+            color: #fff;
+            background-color: #721c24;
+            border-color: #721c24;
+        }
+
+    .info_content {
+        background-color: #fff;
+        padding: 10px;
+        width: 50vh;
+    }
+
+    .info_location_name {
+        color: #023981;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+
+    .info_location_text {
+        margin-bottom: 10px;
+        color: #767a7f;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 20px;
+    }
+
+    .info_location_call {
+        font-size: 14px;
+        color: #2e3133;
+        font-weight: 600;
+    }
+
+        .info_location_call span {
+            padding-right: 8px;
+            font-size: 14px;
+            color: #023981;
+        }
+
+    .btn-link {
+        color: #304496;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+        position: relative;
+        letter-spacing: 0px;
+        border-bottom: 1px solid #304496;
+    }
+
+    .btn:focus, .btn.focus {
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem #cbd2d9;
+    }
+
+    .btn:hover {
+        color: #cbd2d9;
+        text-decoration: none;
+    }
+
+    .btn-link:hover {
+        color: #263679;
+        text-decoration: none;
+        border-bottom: 1px solid #263679;
+    }
+
+    .modalidade-icons {
+        box-sizing: border-box;
+        width: 33.33%;
+        float: left;
+        margin-top: 5px;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .modalidade-image {
+        width: 90px;
+        height: 70px;
+    }
+
+    .modalidade-text {
+        display: block;
+        margin-top: 2px;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: 20rem;
+        object-fit: cover;
+    }
+
+    .modalidades-place {
+        padding: 0 0 30px;
+        margin-top: 0px;
+        border-top: 1px solid #fff;
+        display: inline-block;
+        width: 100%;
+    }
+</style>
+
+<div class="container-fluid ">
+    <div id="mySidebar" class="sidebar"> <img class="card-img-toptext-center w-100" src="~/files/CapaCadastroPista.jpg" alt="Card image cap"> </div>
+
+    <div class="container-fluid" style="margin-top: 50px;">
+
+        <div class="card-deck">
+            <div class="card text-center" style="width: 18rem;">
+                <img class="card-img-top" src="~/files/CapaCadastroPista.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Cadastre Pistas</h5>
+                    <p class="card-text">Ajude a comunidade e cadastre pistas para mapearmos todas as pistas do País!</p>
+                    
+                    <a class="btn btn-primary" asp-controller="Aprovacoes" asp-action="NovoNovo"><i class="fas fa-plus-light"></i> Cadastrar</a>
+                </div>
+            </div>
+            <div class="card text-center" style="width: 18rem;">
+                <img class="card-img-top" src="~/files/CapaProfessor.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">É um professor ?</h5>
+                    <p class="card-text">Cadastresse e apareça nas pistas que você da aula.</p>
+                    <a href="#" class="btn btn-primary">Cadastre-se</a>
+                    <button type="button" class="btn btn-primary" id="2" onClick="reply_click(2)">Saber mais</button>
+                </div>
+            </div>
+
+            <div class="card text-center" style="width: 18rem;">
+                <img class="card-img-top" src="~/files/CapaCadastroPista.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Cadastro pelo google forms</h5>
+                    <p class="card-text">link do google forms.</p>
+                    <a href="#" class="btn btn-primary">Cadastrar</a>
+                    <button type="button" class="btn btn-primary" id="13" onClick="reply_click(3)">Saber mais</button>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+        @*
+            <div class="info_content">
+                <img class="card-img-toptext-center w-100" src="~/files/CapaCadastroPista.jpg" alt="Card image cap">
+
+                <h3 class="info_location_name">Nome Pista</h3>
+                <p class="info_location_text">Pista de dificuldade Fácil</p>
+                <p class="info_location_call"><span><i class="fa fa-map-marked-alt"></i></span>Rua tal 150, cep <br> Cidade, ET</p>
+                <div class="modalidades-place">
+                    <div class="modalidade-icons">
+                        <img class="modalidade-image" src="~/files/CapaCadastroPista.jpg" alt="Card image cap">
+                        <span class="modalidade-text">Street</span>
+                    </div>
+                    <div class="modalidade-icons">
+                        <img class="modalidade-image" src="~/files/CapaCadastroPista.jpg" alt="Card image cap">
+                        <span class="modalidade-text">Street</span>
+                    </div>
+                    <div class="modalidade-icons">
+                        <img class="modalidade-image" src="~/files/CapaCadastroPista.jpg" alt="Card image cap">
+                        <span class="modalidade-text">Street</span>
+                    </div>
+                </div>
+                <a href="#" class="btn-link">Saiba mais</a>
+            </div>*@
+    </div>
+    <br />
+    <br />
+    <div class="container-fluid" align="center">
+        <img src="~/modelosAnuncios/728x90.png" class="img-fluid" alt="Responsive image">
+    </div>
+</div>
+
+
+

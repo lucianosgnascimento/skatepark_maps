@@ -1,2 +1,0 @@
-# skatepark_maps
- 

@@ -1,0 +1,46 @@
+﻿@model ProjetoPista.Model.Dtos.ProfessorDto
+@section Scripts
+    {
+
+}
+<style>
+    .thumbnail {
+        width: 124px;
+        height: 124px;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1.5em;
+        border-radius: 100%;
+        box-shadow: unset;
+    }
+
+    .profile {
+        padding: 10px;
+    }
+
+    .tituloProf {
+        text-align: center;
+    }
+</style>
+
+<div class="info_content">
+    <div class="profile">
+        <img src="~/imagensProf/@Model.nm_profile" class="thumbnail">
+        <div class="pista-info ">
+            <div class="tituloProf">
+                <h2 class="info_location_name">@Model.nm_professor.Split(" ")[0] (@Model.nm_apelido)</h2>
+            </div>
+            <p class="info_location_text">Professor à <b>@Model.nr_anos_experiencia</b> anos. </p>
+
+            <p class="info_location_call"><span><i class="fa-solid fa-mobile"></i></span>@Model.ds_telefone</p>
+            <p class="info_location_call"><span><i class="fa-regular fa-envelope"></i></span>@Model.ds_email</p>
+            <p class="info_location_call"><span><i class="fa-brands fa-instagram"></i></span>@Model.ds_instagram</p>
+            <p class="info_location_call"><span><i class="fa-solid fa-dollar-sign"></i></span>@Model.vl_hora_aula/hora</p>
+            <br />
+            <p class="info_location_call">As pistas que estão sendo exibidas são as que oprofessor x está disponível para dar aulas.</p>
+            <p class="info_location_call">Clique nos pins para saber mais sobre a pista.</p>
+        </div>
+
+    </div>
+</div>
